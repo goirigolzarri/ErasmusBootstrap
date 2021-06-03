@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+
+
+	{% block content %}
+
+
+
+<center><div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+		  <button type="button" class="btn btn-secondary">General information</button>
+		  <button type="button" class="btn btn-secondary">How to get to the city</button>
+		  <button type="button" class="btn btn-secondary">Accommodation</button>
+		  <button type="button" class="btn btn-secondary">Where to go out</button>
+		  <button type="button" class="btn btn-secondary">Food and drinks</button>
+		  <button type="button" class="btn btn-secondary">Main places to visit in the city</button>
+		  <button type="button" class="btn btn-secondary">Weather</button>
+
+		  <div class="btn-group" role="group">
+		    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		      Information about money
+		    </button>
+		    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+		      <a class="dropdown-item" href="#">How much money I will spend per month</a>
+		      <a class="dropdown-item" href="#">Currency</a>
+		    </div>
+		  </div>
+		</div></center>
+
+
+		<div class="jumbotron">
+		  <div class="container">
+			    <h1><b> {{guide.title}}</b></h1>
+			    <hr>
+			    <p>Informacion sobre la ciudad de Bilbao</p>
+		  </div>
+		</div>
+
+		<div class="container body">
+			{{form.media}}
+			{{guide.body | safe}}
+		
+
+		</div>
+
+
+
+	{% endblock %}
+

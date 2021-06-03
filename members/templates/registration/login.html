@@ -1,0 +1,92 @@
+﻿{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+   
+<!-- LOGIN BOOTSTRAP -->
+
+<main class="form-signin">
+  <form id="login-form" action="#" method="post">
+    <img class="mb-4" src="{% static 'images/logo/logoNoTexto.png' %}" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Log in</h1>
+    
+    {% csrf_token %}
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="username" placeholder="name@example.com" name="username" value="" tabindex="1" required>
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mt-5">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" tabindex="2">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3 mt-4">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <a href="{% url 'reset_password' %}" tabindex="5" class="forgot-password">
+    <a class="noSubrayado">Has olvidado la contraseña?</a>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    
+  </form>
+</main>
+
+<!-- -->
+        <!--User Login section starts
+        <div class="user-login-section section-padding bg-fixed">
+            <div class="container margenTop50">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1  text-center">
+                        <div class="login-wrapper">
+                        <div class="imgLogo centrado">
+                            <img src="{% static 'images/logo/logoNoTexto.png' %}" class="imgLoginRegistro">
+                        </div>
+                        <div class="textoDegradado">
+                            <h3 class="margen50 text-center">Log in</h3>
+                        </div>
+                            <div class="ui-dash tab-content">
+                                <div class="tab-pane fade show active" id="login" role="tabpanel">
+                                    <form id="login-form" action="#" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Nombre de usuario" value="" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña">
+                                        </div>
+                                        <div class="row mar-top-30">
+                                            
+                                            <div class="col-12 text-right">
+                                                <div class="res-box sm-left">
+                                                    <a href="{% url 'reset_password' %}" tabindex="5" class="forgot-password enlaceContrasenya textoEP">Have you forgotten the password?</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="res-box text-center mar-top-30">
+                                            <button type="submit" class="btn v3 float-right botonGeneral">Log in</button>                                        
+                                        </div>
+
+                                    </form> 
+                                    <div class="res-box text-left">
+                                        <a class="btn v3 botonGeneral" href="{% url 'UserRegistrationView' %}">Register</a>
+                                    </div>                              
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+        <!--User login section ends-->
+        <!--Login section ends-->
+        <!-- Scroll to top starts-->
+        <span class="scrolltotop"><i class="ion-arrow-up-c"></i></span>
+        <!-- Scroll to top ends-->
+    
+    <!--Footer Starts-->
+{% endblock %}

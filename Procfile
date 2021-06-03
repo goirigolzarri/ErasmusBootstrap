@@ -1,0 +1,1 @@
+web: gunicorn descuentosProyecto.wsgi --log-file -

@@ -1,0 +1,277 @@
+﻿{%load static%}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title>Erasmus Planet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="{%static 'css/styleExt.css'%}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- JQUERY -->
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- SCRIPT REGISTRO -->
+    <script src="{%static 'js/register.js'%}"></script>
+
+    <link rel="icon" type="image/png" href="{%static 'images/EPCircular.ico'%}" with="32" height="32">
+
+</head>
+
+  <body>
+<!--
+    <div class="preloader js-preloader">
+        <img src="{% static 'images/EPCircular.gif'%}" alt="..." class="logoEPGif">
+    </div>
+    -->
+    <!--Preloader ends-->
+    <!--Page Wrapper starts-->
+    <div class="page-wrapper fixed-footer">
+        <!--header starts-->
+
+        <!-- HEADER DE BOOTSTRAP -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+        <div class="container">
+        <a class="navbar-brand" href="{% url 'base' %}">
+            <img src="{%static 'images/menu/logoMenuVacio.png' %}" alt="logo" class="img-fluid" width="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">            
+                <a href="{% url 'api' %}" target="_blank" class="nav-link" aria-current="page">
+                    Accommodations
+                </a>
+            </li>
+            <li class="nav-item"> 
+                <a href="{% url 'Descuentos' %}" class="nav-link">
+                    Discount
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'Tienda' %}" class="nav-link">
+                    {% blocktrans %} Shop {% endblocktrans %}                                  
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'Contacto' %}" class="nav-link">      
+                    Contact
+                </a>
+            </li>
+            </ul>
+            
+            
+            {% if user.is_authenticated %}
+
+            <form>
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </form>
+            <div class="text-end">          
+            <a type="button" class="btn btn-danger" href="{% url 'UserProfile' %}">
+                My profile
+            </a>
+            
+            <a type="button" class="btn btn-info" href="{% url 'logout' %}">
+                Log out
+            </a>
+            
+
+            {% if user.is_superuser %}
+
+            <a type="button" class="btn btn-info" href="{% url 'Admin' %}">
+                Admin
+            </a>
+
+            </div>
+
+            {% endif %}
+            {% else %}
+
+            <div class="text-end">          
+            <a type="button" class="btn btn-danger" href="{% url 'login' %}">
+                Log in
+                </a>
+            
+            <a type="button" class="btn btn-info" href="{% url 'UserRegistrationView' %}">
+                Sign in
+                </a>
+            </div>
+
+            {% endif %}
+        </div>
+        </div>
+    </nav>
+
+        <!---->
+    
+    {% block content %}
+    {% endblock %}
+             
+    </div>
+
+
+<!-- FOOTER BOOTSTRAP -->
+<footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    <div class="row">
+        <div class="col-xl-4 col-md-12">
+            <a href="#"> 
+                <img class="logoFooter" src="{%static 'images/logo/logoCompletoEP.png'%}" alt="logo" width="100">
+            </a>
+        </div>
+        <div class="col-xl-2 col-md-12">
+            <h4>Helpful Links</h4>
+            <ul class="list listaFooter">
+                <li>
+                    <a class="link-hov style2 noSubrayado" href="{% url 'login' %}">Login</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li>
+                    <a class="link-hov style2 noSubrayado" href="{% url 'UserProfile' %}">My Account</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a class="link-hov style2 noSubrayado" href="{% url 'PrivacyPolicy' %}">Privacy policy</a>
+                </li>
+                <li>
+                    <a class="link-hov style2 noSubrayado" href="{% url 'Faq' %}">FAQ</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xl-2 col-md-12">
+            <h4>Category</h4>
+            <ul class="list listaFooter">
+                <li>
+                    <a class="link-hov style2 noSubrayado" href="{% url 'Tienda' %}">Shop</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xl-2 col-md-12">
+            <h4>Payment</h4>
+            <ul class="list listaFooter">
+                <li>                                   
+                    <a class="link-hov style2 noSubrayado">PayPal</a>                                    
+                </li>
+
+                <li>
+                    <a class="link-hov style2 noSubrayado">Credit card</a>
+                </li>
+
+                <li>
+            </ul>
+        </div>
+        <div class="col-xl-2 col-md-12">
+            <h4>Contact us</h4>
+            <ul class="list  listaFooter">                                
+                <li>
+                    <div class="contact-info">
+                        <div class="icon">
+                            <i class=""></i>
+                        </div>
+                        <div class="text">
+                            <a href="mailto:info@erasmusplanet.com" class="link-hov style2 noSubrayado">hello@erasmusplanet.com</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact-info">
+                        <div class="icon">
+                            <i class=""></i>
+                        </div>
+                        <div class="text">
+                            <a href="tel:+34697962671" class="link-hov style2 noSubrayado">+34 697 96 26 71</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="social-buttons style2">
+                <li>
+                    <a href="https://www.instagram.com/erasmus.planet/" target="_blank">
+                    <i class="ion-social-instagram iconoFooter"></i>
+                    </a>
+                </li>
+                <!--<li><a href="#" target="_blank"><i class="ion-social-facebook iconoFooter"></i></a></li>-->
+            </ul>
+
+        </div>
+    </div>
+  </div>
+</footer>
+<!---->
+
+      <!---->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+        var user = '{{request.user}}'
+
+        function getToken(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getToken('csrftoken');
+
+
+
+
+
+
+        
+        function getCookie(name) {
+            // Split cookie string and get all individual name=value pairs in an array
+            var cookieArr = document.cookie.split(";");
+
+
+            //Loop through the array elements
+                for (var i = 0; i < cookieArr.length; i++) {
+                    var cookiePair = cookieArr[i].split("=");
+                    if(name == cookiePair[0].trim()){
+                        return decodeURIComponent(cookiePair[1]);
+                    }
+                   
+                }
+            
+            return null;
+        }
+        var cart = JSON.parse(getCookie('cart'))
+        
+        if(cart == undefined){
+
+            cart = {}
+            console.log('Cart was created!')
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+        }
+        console.log('Cart:', cart) 
+
+    </script>
+
+
+  </body>
+
+    
+ </html>

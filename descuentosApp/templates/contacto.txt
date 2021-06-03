@@ -1,0 +1,9 @@
+
+Contact Name:
+{{ firstname }} {{ last_name }}
+
+Email :
+{{ email }}
+
+Content:
+{{ body }}

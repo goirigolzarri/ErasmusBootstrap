@@ -1,0 +1,675 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "0.1.0",
+    "title": "HousingAnywhere Outbound Feeds",
+    "x-logo": {
+      "altText": "HousingAnywhere logo",
+      "url": "data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTA4LjkgMzIiIHdpZHRoPSIxMDkiIGhlaWdodD0iMzIiPjxzdHlsZT4uc3Qwe2ZpbGw6I2YzNzEyMX08L3N0eWxlPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0yNS43IDI4LjdIMi4xYy0xIDAtMS45LS44LTEuOS0xLjkgMC0xIC44LTEuOSAxLjktMS45aDIxLjdWMTQuM0wxMy44IDYgNCAxNC4zdjQuNWMwIDEtLjggMS45LTEuOSAxLjktMSAwLTEuOS0uOC0xLjktMS45di01LjRjMC0uNi4yLTEuMS43LTEuNGwxMS43LTkuOWMuNy0uNiAxLjctLjYgMi40IDBMMjYuOSAxMmMuNC40LjcuOS43IDEuNXYxMy40YzAgMS0uOSAxLjgtMS45IDEuOHpNMzQuOCAxLjZoMi45djRoMy4ydi00aDIuOXYxMC44aC0yLjlWOC4xaC0zLjJ2NC4zaC0yLjlWMS42ek00NS40IDguMmMwLTIuOCAyLTQuMyA0LjEtNC4zIDIuMSAwIDQuMSAxLjYgNC4xIDQuM3MtMiA0LjMtNC4xIDQuM2MtMi4xLjEtNC4xLTEuNS00LjEtNC4zem01LjMgMGMwLTEuMy0uMy0yLjEtMS4yLTIuMXMtMS4xLjktMS4xIDIuMS4zIDIuMSAxLjIgMi4xIDEuMS0uOCAxLjEtMi4xek01NS4xIDkuMlY0LjFINTh2NC43YzAgMS4xLjMgMS4zLjggMS4zcy44LS4yIDEuMi0uN1Y0LjFoMi45djguM2gtMi4zbC0uMi0xLjFoLS4xYy0uNy44LTEuNCAxLjMtMi42IDEuMy0xLjggMC0yLjYtMS40LTIuNi0zLjR6TTY0LjEgMTEuNGwxLjMtMS44Yy44LjYgMS40LjggMiAuOC42IDAgLjgtLjIuOC0uNSAwLS40LS44LS42LTEuNi0xLTEtLjQtMi4xLTEuMS0yLjEtMi41IDAtMS42IDEuMy0yLjcgMy4zLTIuNyAxLjQgMCAyLjMuNSAzLjEgMS4xbC0xLjMgMS43Yy0uNi0uMy0xLjItLjUtMS43LS41cy0uNy4xLS43LjUuNy42IDEuNi45YzEgLjQgMi4xIDEgMi4xIDIuNSAwIDEuNi0xLjIgMi44LTMuNSAyLjgtMS4yLS4xLTIuNS0uNi0zLjMtMS4zek03Mi4xIDEuNmMwLS44LjctMS40IDEuNi0xLjQuOSAwIDEuNi42IDEuNiAxLjQgMCAuOC0uNyAxLjQtMS42IDEuNC0xIC4xLTEuNi0uNS0xLjYtMS40em0uMSAyLjVoMi45djguM2gtMi45VjQuMXpNNzcgNC4xaDIuM2wuMiAxaC4xYy43LS42IDEuNS0xLjIgMi42LTEuMiAxLjggMCAyLjYgMS4zIDIuNiAzLjR2NS4xSDgyVjcuNmMwLTEuMS0uMy0xLjMtLjgtMS4zcy0uOC4yLTEuMy42djUuNEg3N1Y0LjF6TTg2LjIgMTMuN2MwLS43LjQtMS4yIDEuMi0xLjZWMTJjLS40LS4zLS44LS43LS44LTEuNCAwLS42LjQtMS4yLjktMS42LS42LS40LTEuMS0xLjItMS4xLTIuMSAwLTIuMSAxLjctMyAzLjUtMyAuNSAwIC45LjEgMS4zLjJoMy4xdjIuMWgtMS4yYy4xLjIuMS41LjEuOSAwIDItMS41IDIuOC0zLjMgMi44LS4zIDAtLjYgMC0uOS0uMS0uMi4xLS4yLjItLjIuNSAwIC40LjMuNSAxLjIuNWgxLjJjMi4xIDAgMy4zLjYgMy4zIDIuMiAwIDEuOC0xLjkgMy00LjggMy0xLjktLjItMy41LS44LTMuNS0yLjN6bTUuNi0uNGMwLS40LS40LS41LTEuMS0uNUg5MGMtLjcgMC0xIDAtMS4yLS4xLS4yLjItLjMuNC0uMy42IDAgLjUuNy44IDEuNi44IDEtLjEgMS43LS40IDEuNy0uOHptLTEtNi40YzAtLjgtLjQtMS4xLS45LTEuMXMtLjkuNC0uOSAxLjFjMCAuOC40IDEuMi45IDEuMi42IDAgLjktLjQuOS0xLjJ6TTM2LjcgMTcuOWgzLjRsMy4zIDEwLjhoLTNsLS41LTIuM2gtM2wtLjUgMi4zaC0yLjlsMy4yLTEwLjh6bS43IDYuM2gybC0uMi0uN2MtLjMtMS0uNS0yLjMtLjgtMy40aC0uMWMtLjIgMS4xLS41IDIuNC0uOCAzLjRsLS4xLjd6TTQ0LjIgMjAuNGgyLjNsLjIgMWguMWMuNy0uNiAxLjUtMS4yIDIuNi0xLjIgMS44IDAgMi42IDEuMyAyLjYgMy40djUuMWgtMi45VjI0YzAtMS4xLS4zLTEuMy0uOC0xLjNzLS44LjItMS4zLjZ2NS40aC0yLjl2LTguM3pNNTMuOSAzMS43bC41LTIuMmMuMSAwIC40LjEuNS4xLjggMCAxLjEtLjMgMS4zLS44bC4xLS40LTMuMi04SDU2bDEgMy4yYy4yLjguNCAxLjUuNiAyLjRoLjFjLjItLjguMy0xLjYuNS0yLjRsLjgtMy4yaDIuN2wtMi44IDguMmMtLjkgMi4yLTEuOCAzLjItMy44IDMuMi0uNSAwLS45IDAtMS4yLS4xek02Mi4zIDIwLjRoMi44bC42IDMuNWMuMS44LjIgMS43LjMgMi41aC4xYy4xLS45LjMtMS43LjUtMi41bC44LTMuNWgyLjRsLjggMy41Yy4yLjguMyAxLjcuNSAyLjVoLjFjLjEtLjkuMi0xLjcuMy0yLjVsLjYtMy41aDIuNmwtMS45IDguM2gtMy4zbC0uNS0yLjljLS4xLS44LS4zLTEuNS0uNC0yLjRoLS4xYy0uMS45LS4yIDEuNy0uNCAyLjRsLS42IDIuOWgtMy4ybC0yLTguM3pNNzYuMSAxNy4ySDc5djIuN2wtLjEgMS40Yy42LS41IDEuNC0xLjEgMi41LTEuMSAxLjggMCAyLjYgMS4zIDIuNiAzLjR2NS4xaC0yLjlWMjRjMC0xLjEtLjMtMS4zLS44LTEuM3MtLjguMi0xLjMuNnY1LjRoLTIuOVYxNy4yek04NS4zIDI0LjZjMC0yLjcgMi00LjMgNC00LjMgMi41IDAgMy42IDEuOCAzLjYgNCAwIC41LS4xIDEtLjEgMS4yaC00LjdjLjMgMSAxIDEuMyAxLjkgMS4zLjYgMCAxLjEtLjIgMS43LS41bC45IDEuN2MtLjkuNi0yLjEgMS0zIDEtMi40LS4xLTQuMy0xLjctNC4zLTQuNHptNS4yLTFjMC0uNi0uMy0xLjItMS4xLTEuMi0uNiAwLTEuMi40LTEuMyAxLjJoMi40ek05NC41IDIwLjRoMi4zbC4yIDEuNGguMWMuNi0xLjEgMS41LTEuNiAyLjQtMS42LjUgMCAuOC4xIDEgLjJsLS41IDIuNWMtLjMtLjEtLjYtLjEtLjktLjEtLjYgMC0xLjMuNC0xLjcgMS40djQuNmgtMi45di04LjR6TTEwMC44IDI0LjZjMC0yLjcgMi00LjMgNC00LjMgMi41IDAgMy42IDEuOCAzLjYgNCAwIC41LS4xIDEtLjEgMS4yaC00LjdjLjMgMSAxIDEuMyAxLjkgMS4zLjYgMCAxLjEtLjIgMS43LS41bC45IDEuN2MtLjkuNi0yLjEgMS0zIDEtMi40LS4xLTQuMy0xLjctNC4zLTQuNHptNS4yLTFjMC0uNi0uMy0xLjItMS4xLTEuMi0uNiAwLTEuMi40LTEuMyAxLjJoMi40eiIvPjwvc3ZnPg=="
+    },
+    "description": "\n### HousingAnywhere Outbound Feeds\nThe integration via outbound feed is one of two integration methods our affiliate partners can use to integrate our listings into their system.\nHousingAnywhere provides links to files in JSON format containing our listings in bulk. The data is already filtered according to our partners' requirements or market area and come already tagged with UTM tags.\nAs an affiliate partner, you can import the data on your system by downloading it every day and syncing your inventory. This way, you can show the listings on your website and directly send your visitors to HousingAnywhere.\nHousingAnywhere tracks traffic and conversion for each affiliate partner and provides conversion reports as needed by the affiliate partners.\n### Getting Started\nIf you provide an API to import listings, you can send us your documentation.\nIf you don't provide such API or prefer to consume our API (our most recommended way because it might be easier for you to increase conversions), we can provide you with links to an exclusive feed. In some specific cases, we are able to accommodate custom feed specifications if required.\nEach affiliate partner receives a dedicated URL to fetch the feed. The URL exposes the inventory according to the requirements agreed upon.\n### Features\n- Pagination can be used to break our feed in chunks easier to be ingested/imported by the affiliate partner without worries about high memory usage.\n- Feed can be generated based on a list of countries.\n- Feed can be filtered based on the availability of the listings.\n- Listings images includes URLs to different image sizes to better target various devices and screen sizes.\n- Feed includes a `rank` field for each listing that allows affiliate partners to sort listings based on the same algorithms used by HousingAnywhere. By using ranking, affiliate partners can increase conversion rate on HousingAnywhere.\n### API usage To provide a high Quality of Service (QoS) we ask all affiliate partners to observe the following rules:\n* Download at most 5 images concurrently\n* Cache our images and serve them on your own servers\n* Respect API rate-limiting values informed via HTTP response headers\n* Use a backoff algorithm if receiving the 429 HTTP status code (Too Many Requests)\nFailure in complying with these guidelines may result in temporary blocking until the situation is resolved.\n### How to decide to use the single page or pagination feed\nUsing the single page is less complex and memory intensive depending on what programming language and JSON parser is used. It has to support consuming the JSON file as a stream instead of holding all its data in memory at once (for example, you don't want to put everything in a typical slice or array at once, but you can process listing by listing).\nIf you aren't able to import data like this, you should ask for a paginated feed instead – requiring you to do multiple requests to get all the listings.\n### Tracking and Reporting\nHousingAnywhere tracks the traffic and conversion from affiliate partners. To make sure we are able to track traffic, on a page-view two parameters are expected in the query string of the URL:\n\n- `affiliate_partner_id` - unique identifier of the affiliate partner. It is already included in the `original_link` property fo the listing.\n- `affiliate_click_id` - transaction id of the affiliate partner. It must be added to the url in the `original_link` of the feed by the affiliate partner to uniquely identify an user interacion.\nWe generate conversion reports and communicate it to the affiliate partners.   Conversion reports can be generated daily, weekly or monthly according the the needs of the affiliate partners, and are delivered over email attachments.\nIt is essential to keep track of the click ID (that can be any random string value) to check the conversion reports.\nThis report has the following structure:\n\n` click id | booking id | listing id | booking date | provider | move in date | move out date | city | country `\n\nclick id - this is the reference of the click id that generated the conversion\n\nbooking id - this is the reference of the booking in HousingAnywhere\n\nlisting id - this is the id from HousingAnywhere of the listing that generated the conversion\n\nbooking date - this is the date the conversion happened\n\nprovider - we set this to `HousingAnywhere`\n\nmove in date, move out  date - the period of the booking\n\ncity, country - the city and country of the conversion\n\n### Specifications\nThis document outlines the design of the feed with detailed explanation around each field.\n",
+    "contact": {
+      "name": "Support",
+      "email": "feeds@housinganywhere.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Feed"
+    },
+    {
+      "name": "Paginated Feed"
+    }
+  ],
+  "paths": {
+    "/feed": {
+      "get": {
+        "tags": [
+          "Feed"
+        ],
+        "summary": "Feed Structure",
+        "description": "Explanation around each field of the feed.",
+        "operationId": "getFeed",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedStructure"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paged-feed-manifest": {
+      "get": {
+        "tags": [
+          "Paginated Feed"
+        ],
+        "summary": "Paginated Feed Structure",
+        "description": "Paginated feed is defined with set of files. First file informs about general properties of the feed and points to the first page.",
+        "operationId": "getPagedFeedManifest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagedFeedManifest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paged-feed-page": {
+      "get": {
+        "tags": [
+          "Paginated Feed"
+        ],
+        "summary": "Singe Page For Paginated Feed",
+        "description": "Each page in paginated feed is defined as follows",
+        "operationId": "getPagedFeedPage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PagedFeedPage"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FeedStructure": {
+        "type": "object",
+        "properties": {
+          "generatedAt": {
+            "type": "string",
+            "example": "2019-07-10 11:45:26",
+            "description": "timestamp in UTC"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32",
+            "example": 100,
+            "description": "total count of elements in feed"
+          },
+          "listings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Listing"
+            }
+          }
+        }
+      },
+      "PagedFeedManifest": {
+        "type": "object",
+        "properties": {
+          "generatedAt": {
+            "type": "string",
+            "example": "2019-07-10 11:45:26",
+            "description": "timestamp in UTC"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32",
+            "example": 100,
+            "description": "total count of elements in feed"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "example": 100,
+            "description": "maximum number of listings in single page of the feed"
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32",
+            "example": 100,
+            "description": "number of pages available in feed"
+          },
+          "firstPage": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://housinganywhere.com/feed/example/feed-page-1.json",
+            "description": "link to the first page of the feed. File has the following structure [Singe Page For Paginated Feed](#operation/getPagedFeedPage)"
+          }
+        }
+      },
+      "PagedFeedPage": {
+        "type": "object",
+        "properties": {
+          "nextPage": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://housinganywhere.com/feed/example/feed-page-1.json",
+            "description": "link to the next page of the feed. Empty in last page. File has the following structure [Singe Page For Paginated Feed](#operation/getPagedFeedPage)"
+          },
+          "prevPage": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://housinganywhere.com/feed/example/feed-page-1.json",
+            "description": "link to the previous page of the feed. Empty in first page. File has the following structure [Singe Page For Paginated Feed](#operation/getPagedFeedPage)"
+          },
+          "listings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Listing"
+            }
+          }
+        }
+      },
+      "Listing": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "514630",
+            "description": "ID supplied by HousingAnywhere"
+          },
+          "rank": {
+            "type": "integer",
+            "example": 281,
+            "description": "Higher the value, higher in the results the property should be."
+          },
+          "published": {
+            "type": "string",
+            "example": "2019-07-10 11:45:26",
+            "description": "timestamp in UTC"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/Kind"
+          },
+          "kindLabel": {
+            "type": "string",
+            "example": "entire place",
+            "description": ""
+          },
+          "type": {
+            "$ref": "#/components/schemas/Type"
+          },
+          "typeLabel": {
+            "type": "string",
+            "example": "house",
+            "description": ""
+          },
+          "rentType": {
+            "type": "string",
+            "example": "monthly",
+            "description": ""
+          },
+          "title": {
+            "type": "string",
+            "example": "Mały Rynek, Kraków"
+          },
+          "originalLink": {
+            "type": "string",
+            "example": "https://housinganywhere.com/room/1597645/nl/Rotterdam/bergweg?utm_source=partnerName&utm_campaign=marketingTerm&affiliate_partner_id=partnerName&utm_medium=affiliate&utm_content=Rotterdam",
+            "description": "The url to be used for to link to HousingAnywhere."
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "description": {
+            "type": "string",
+            "example": "Very nice apartment close to Erasmus Medical Center and TU Delft. This is a 3 room apartment with a back yard. The whole apartment can be rented out to maximum of 2 students who need to share the apartment together. The apartment is fully furnished."
+          },
+          "facilities": {
+            "$ref": "#/components/schemas/Facilities"
+          },
+          "costs": {
+            "$ref": "#/components/schemas/Costs"
+          },
+          "minimumStayMonths": {
+            "type": "integer",
+            "example": 0,
+            "description": "Mention if there is a minimum limit on the period of stay, for eg, the tenant has to stay at least 2 months."
+          },
+          "moveInWindow": {
+            "type": "integer",
+            "description": " Setting this field to greater than 0 creates a time window in which in the listing is bookable. If the first day available is `startDate` then the listing is bookable between `startDate` and `startDate + moveInWindow`. Setting it to 0 denotes no limit. ",
+            "example": 30
+          },
+          "currentOccupancy": {
+            "type": "integer",
+            "description": "The number of people currently living in the house. This is only applicable to properties that are shared apartments or shared rooms.",
+            "example": 2
+          },
+          "minAge": {
+            "type": "integer",
+            "format": "int32",
+            "description": "If there is a minimum age applicable to the tenant, i.e., they have to be at least 18 years old.",
+            "example": 23
+          },
+          "maxAge": {
+            "type": "integer",
+            "format": "int32",
+            "description": "If there is a maximum age applicable to the tenant, i.e., they have to be no older than 35 years.",
+            "example": 45
+          },
+          "preferredGender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "available": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Calendar"
+            }
+          }
+        }
+      },
+      "Calendar": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Date in ISO 8601 compliant with format YYYY-MM-DD",
+            "example": "2019-05-29"
+          },
+          "to": {
+            "type": "string",
+            "description": "Date in ISO 8601 compliant with format YYYY-MM-DD",
+            "example": "2020-07-29"
+          }
+        }
+      },
+      "Gender": {
+        "type": "string",
+        "enum": [
+          "male",
+          "female",
+          "other"
+        ]
+      },
+      "Costs": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "example": "GBP",
+            "description": "currency used for the listing"
+          },
+          "pricing": {
+            "type": "string",
+            "example": "monthly"
+          },
+          "price": {
+            "type": "integer",
+            "example": 10100,
+            "description": "prices in the smaller currency denomination (including cents). Example: 100099 for Euro should be read as €1000,99."
+          },
+          "deposit": {
+            "type": "integer",
+            "example": 25100,
+            "description": "prices in the smaller currency denomination (including cents). Example: 100099 for Euro should be read as €1000,99."
+          },
+          "agencyFee": {
+            "type": "integer",
+            "example": 10100,
+            "description": "prices in the smaller currency denomination (including cents). Example: 100099 for Euro should be read as €1000,99."
+          },
+          "estimatedBills": {
+            "type": "integer",
+            "example": 0,
+            "description": "prices in the smaller currency denomination (including cents). Example: 100099 for Euro should be read as €1000,99."
+          }
+        }
+      },
+      "Facilities": {
+        "properties": {
+          "allergyFriendly": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "housematesGender": {
+            "$ref": "#/components/schemas/HouseMates"
+          },
+          "registrationPossible": {
+            "$ref": "#/components/schemas/YesNoUnknown",
+            "description": "If the tenant can register as a resident at the address with the municipality."
+          },
+          "tenantStatus": {
+            "$ref": "#/components/schemas/TenantOccupation",
+            "description": "If required, occupational status of the tenant."
+          },
+          "freePlaces": {
+            "type": "integer",
+            "example": 3,
+            "description": " Number of places available for the listing. This Number is just informative and does not have any impact on the booking. If not provided, this field should be considered as unknown in the UI. "
+          },
+          "couplesAllowed": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "pets": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "playMusic": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "smoking": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "bedrooms": "#/components/schemas/Number",
+          "bedroomFurnished": "#/components/schemas/YesNoUnknown",
+          "bedroomSize": "#/components/schemas/Number",
+          "bedroomLock": "#/components/schemas/YesNoUnknown",
+          "balconyTerrace": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "basement": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "bathroom": {
+            "$ref": "#/components/schemas/Access"
+          },
+          "garden": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "kitchen": {
+            "$ref": "#/components/schemas/Access"
+          },
+          "livingRoom": {
+            "$ref": "#/components/schemas/Access"
+          },
+          "parking": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "toilet": {
+            "$ref": "#/components/schemas/Access"
+          },
+          "totalSize": {
+            "$ref": "#/components/schemas/Number",
+            "description": "This is the total area of the listing (apartment or house) in square meters, including all private and shared spaces."
+          },
+          "wheelchairAccessible": {
+            "$ref": "#/components/schemas/YesNoUnknown",
+            "description": "If the space is accessible to people with disabilities. (e.g. has ramps, elevators etc..)"
+          },
+          "airConditioning": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "bed": "#/components/schemas/YesNoUnknown",
+          "closet": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "desk": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "dishwasher": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "dryer": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "internet": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "roomFurniture": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "tv": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "washingMachine": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "wifi": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "flooring": {
+            "$ref": "#/components/schemas/Flooring"
+          },
+          "heating": {
+            "$ref": "#/components/schemas/Heating"
+          },
+          "kitchenware": {
+            "$ref": "#/components/schemas/Access"
+          },
+          "cleaningCommonRoomsIncluded": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "cleaningPrivateRoomIncluded": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "electricityCostIncluded": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "gasCostIncluded": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "internetCostIncluded": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          },
+          "waterCostIncluded": {
+            "$ref": "#/components/schemas/YesNoUnknown"
+          }
+        }
+      },
+      "TenantOccupation": {
+        "type": "string",
+        "enum": [
+          "working",
+          "student",
+          "workingStudent",
+          "lookingForJob"
+        ]
+      },
+      "Access": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "enum": [
+              "unknown",
+              "private",
+              "shared",
+              "no"
+            ],
+            "example": "private"
+          }
+        }
+      },
+      "Heating": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "enum": [
+              "central",
+              "gas",
+              "stove",
+              "electrical",
+              "unknown"
+            ],
+            "example": "central"
+          }
+        }
+      },
+      "HouseMates": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "enum": [
+              "private",
+              "shared_w_girls",
+              "shared_w_boys",
+              "shared_w_both",
+              "unknown"
+            ],
+            "example": "shared_w_girls"
+          }
+        }
+      },
+      "Flooring": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "enum": [
+              "laminate",
+              "wood",
+              "carpet",
+              "plastic",
+              "other"
+            ],
+            "example": "laminate"
+          }
+        }
+      },
+      "Number": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "example": "23",
+            "description": "`unknown` | any integer or float e.g `23`"
+          }
+        }
+      },
+      "YesNoUnknown": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "example": "yes",
+            "enum": [
+              "yes",
+              "no",
+              "unknown",
+              "discussable",
+              "outside_only"
+            ]
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "original_link": {
+            "type": "string",
+            "example": "http://cdn.housinganywhere.com/images/room/514630/4c0bba6c-ce14-4277-92e4-5b984767c096.jpg?rotate=0",
+            "description": "Link to the image in full resolution"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageCategories"
+            }
+          },
+          "sizes": {
+            "$ref": "#/components/schemas/Sizes"
+          }
+        }
+      },
+      "Sizes": {
+        "type": "object",
+        "properties": {
+          "100x100": {
+            "type": "object",
+            "$ref": "#/components/schemas/Size"
+          }
+        }
+      },
+      "Size": {
+        "type": "object",
+        "properties": {
+          "link": {
+            "type": "string",
+            "example": "https://cdn.housinganywhere.com/images/room/514630/4c0bba6c-ce14-4277-92e4-5b984767c096.jpg?rotate=0&size=100x100"
+          },
+          "width": {
+            "type": "integer",
+            "example": 100
+          },
+          "height": {
+            "type": "integer",
+            "example": 100
+          }
+        }
+      },
+      "ImageCategories": {
+        "type": "string",
+        "enum": [
+          "unknown",
+          "kitchen",
+          "bathroom",
+          "bedroom",
+          "livingroom",
+          "neighborhood",
+          "floorplan"
+        ],
+        "example": "livingroom"
+      },
+      "Kind": {
+        "type": "integer",
+        "example": 1,
+        "enum": [
+          "EntirePlace = 1",
+          "PrivateRoom = 2",
+          "SharedRoom = 3"
+        ]
+      },
+      "Type": {
+        "type": "integer",
+        "example": 1,
+        "enum": [
+          "House = 1",
+          "Building = 2",
+          "Apartment = 3"
+        ]
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string",
+            "example": "Mały Rynek"
+          },
+          "neighborhood": {
+            "type": "string",
+            "example": "Stare Miasto"
+          },
+          "city": {
+            "type": "string",
+            "example": "Kraków"
+          },
+          "country": {
+            "type": "string",
+            "example": "Poland"
+          },
+          "countryCode": {
+            "type": "string",
+            "example": "PL"
+          },
+          "postalCode": {
+            "type": "string",
+            "example": "31-041"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/Coordinates"
+          }
+        }
+      },
+      "Coordinates": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "float",
+            "example": 50.0613456
+          },
+          "longitude": {
+            "type": "float",
+            "example": 19.9400862
+          }
+        }
+      }
+    }
+  }
+}

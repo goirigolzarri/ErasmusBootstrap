@@ -1,0 +1,983 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+
+
+<!-- REGISTRO BOOTSTRAP -->
+
+{% if error %}
+    <div class="alert alert-danger mar-top-25">
+        <div class="alert alert-custom alert-light-danger fade show mb-5" role="alert">
+            <div class="alert-icon"><i class="flaticon-warning"></i></div>
+            <div class="alert-text">No tienes la edad!</div>
+            <div class="alert-close">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+<!-- MultiStep Form -->
+<div class="container-fluid" id="grad1">
+    <div class="row justify-content-center mt-0">
+        <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2><strong>Sign Up Your User Account</strong></h2>
+                
+                <div class="row">
+                    <div class="col-md-12 mx-0">
+                        <form id="msform" action="#" method="post">
+                        {% csrf_token %}
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id="personal"><strong>Personal</strong></li>
+                                <li id="account"><strong>Account</strong></li>
+                                <li id="payment"><strong>Studies</strong></li>
+                                <li id="confirm"><strong>Finish</strong></li>
+                            </ul> <!-- fieldsets -->
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Personal Information</h2> 
+                                    <div class="row">
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Name</label>
+                                            {{ form.first_name }}
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Surname</label>
+                                            {{ form.last_name }}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Gender</label>
+                                            {{ form.gender }}
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12">
+                                            <label>Date of birth</label>
+                                            {{ form.date }}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-12 col-sm-12">
+                                        <label>Select your country</label>
+                                        {{ form.country }}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Exchange start</label>
+                                        {{ form.date_inicio }}
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Exchange end</label>
+                                        {{ form.date_fin }}
+                                        </div>
+                                    </div>
+                                </div> 
+                                <input type="button" name="next" class="next action-button btn btn-primary" value="Next Step" />
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Account Information</h2> 
+                                    <div class="row">
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Username</label>
+                                            {{ form.username }}
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Email</label>
+                                            {{ form.email }}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-3 col-sm-3">
+                                            <label>Prefix</label>
+                                            {{form.prefix}}
+                                        </div>
+                                        <div class="col-xl-9 col-sm-9"></div>
+                                        <label>Phone number</label>
+                                        {{ form.phone }}
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Password</label>
+                                        {{ form.password1 }}
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12">
+                                        <label>Repeat password</label>
+                                        {{ form.password2 }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
+                                <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Studies Information</h2>
+
+                                    <div class="row">
+                                    <div class="col-xl-6 col-sm-12">
+                                        <label>What are you coming for?</label>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12">
+                                        <select class="form-control">
+                                            <option>Bachelor's degree</option>
+                                            <option>Au pair</option>
+                                            <option>Master</option>
+                                            <option>Internship</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    
+                                </div> 
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="make_payment" class="next action-button" value="Confirm" />
+                            </fieldset>
+                            
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
+                                    </div> <br><br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-7 text-center">
+                                            <h5>You Have Successfully Signed Up</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---->
+
+<!--User Login section starts-->
+
+<div class="user-login-section section-padding bg-fixed">
+    <div class="container margenTop50">
+        <div class="row">
+            <div class="col-md-10 offset-md-1  text-center">
+                <div class="login-wrapper anchoRegistro">
+                    <div class="imgLogo centrado">
+                        <img src="{% static 'images/logo/logoNoTexto.png' %}" class="imgLoginRegistro">
+                    </div>
+                    <div class="textoDegradado">
+                        <h3 class="margen50">Register</h3>
+                    </div>
+                    <div class="ui-dash tab-content">
+                        <div class="tab-pane fade show active" id="login" role="tabpanel">
+                            {% if error %}
+                            <div class="alert alert-danger mar-top-25">
+                                <div class="alert alert-custom alert-light-danger fade show mb-5" role="alert">
+                                    <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                    <div class="alert-text">No tienes la edad!</div>
+                                    <div class="alert-close">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="ki ki-close"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <form id="login-form" action="#" method="post">
+
+                                {% csrf_token %}
+
+                                <!-- PASO 1 -->
+                                <div class="tab">
+
+                                    <div class="row mar-top-35">
+
+                                        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                            <label for="" class="label">Name</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                {{ form.first_name }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, enter your name</span>
+
+                                        </div>
+
+                                        <!--        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Name</label>
+                                                <div class="control has-icons-left">                                                
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                                    </svg>                                                    
+                                                    {{ form.first_name }}                                                    
+                                                </div>
+                                                <span class="form-text text-muted">Please, enter your name</span>
+                                            </div>-->
+
+
+                                        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                            <label for="" class="label">Last name</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                {{ form.last_name }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, enter your last name</span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row mar-top-20">
+
+                                        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                            <label for="" class="label">Gender</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                {{ form.gender }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, select your gender</span>
+
+                                        </div>
+
+                                        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                            <label for="" class="label">Date of birth</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                {{ form.date }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, enter your date of birth</span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-xl-14 col-sm-14 margenBotonNext">
+                                        <label for="" class="label">Country</label>
+                                        <div class="input-group input-group-lg input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-geo-alt-fill"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            {{ form.country }}
+                                        </div>
+                                        <span class="form-text text-muted">Please, select your country</span>
+
+                                    </div>
+
+                                    <div class="row mar-top-20">
+
+                                        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                            <label for="" class="label">Exchange start date</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                {{ form.date_inicio }}
+                                            </div>
+                                            <span class="form-text text-muted">My exchange will be from...</span>
+
+                                        </div>
+
+                                        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                            <label for="" class="label">Exchange end date</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                {{ form.date_fin }}
+                                            </div>
+                                            <span class="form-text text-muted">Will be until...</span>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <!-- PASO 2 -->
+                                <div class="tab">
+
+                                    <div class="row mar-top-35">
+
+                                        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                            <label for="" class="label">Username</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-person-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                {{ form.username }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, enter your username</span>
+
+                                        </div>
+
+                                        <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                            <label for="" class="label">Email</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-envelope-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                {{ form.email }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, enter your email address
+                                                </address></span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mar-top-20 col-xl-12">
+
+                                        <div class="field col-xl-3 col-sm-12">
+                                            <div class="control has-icons-left  margenBotonNext">
+                                                <label>Prefix</label>
+                                                <div class="input-group input-group-solid">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">+</span>
+                                                        {{form.prefix}}
+                                                    </div>
+
+                                                </div>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field col-xl-9 col-sm-12 control has-icons-left margenBotonNext">
+                                            <label for="" class="label">Phone</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-telephone-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                {{ form.phone }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, enter your number phone</address>
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mar-top-35 mar-bot-35">
+
+                                        <div class="col-xl-6 col-sm-12">
+                                            <label class="label">Password</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                {{ form.password1 }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, enter a password</span>
+
+                                        </div>
+
+
+
+                                        <div class="col-xl-6 col-sm-12">
+                                            <label class="label">Repeat password</label>
+                                            <div class="input-group input-group-lg input-group">
+                                                {{ form.password2 }}
+                                            </div>
+                                            <span class="form-text text-muted">Please, repeat your password</span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- PASO 3 -->
+                                <div class="tab">
+                                    <div class="row margenBotonNext mar-top-15">
+                                        <div class="col-xl-12 col-sm-12">
+                                            <label for="" class="label">
+                                                <h5>Type of student</h5>
+                                            </label>
+                                            <div class="mar-bot-20">
+                                                {{form.studentType}}
+                                            </div>
+                                            </label>
+                                            <div class="row">
+
+                                                <div class="col-xl-3 col-sm-12">
+                                                    <button class="btn v3 botonGeneral" type="button" id=1
+                                                        data-toggle="collapse" data-target="#academic"
+                                                        aria-expanded="true" aria-controls="collapseExample"
+                                                        onclick="recogeID(this.id)">
+                                                        Bachelor's degree
+                                                    </button>
+                                                </div>
+
+                                                <div class="col-xl-3 col-sm-12">
+                                                    <button class="btn v3 botonGeneral" type="button" id=2
+                                                        data-toggle="collapse" data-target="#aupair"
+                                                        aria-expanded="true" aria-controls="collapseExample"
+                                                        onclick="recogeID(this.id)">
+                                                        Au pair
+                                                    </button>
+                                                </div>
+
+                                                <div class="col-xl-3 col-sm-12">
+                                                    <button class="btn v3 botonGeneral" type="button" id=3
+                                                        data-toggle="collapse" data-target="#master"
+                                                        aria-expanded="true" aria-controls="collapseExample"
+                                                        onclick="recogeID(this.id)">
+                                                        Master student
+                                                    </button>
+                                                </div>
+
+                                                <div class="col-xl-3 col-sm-12">
+                                                    <button class="btn v3 botonGeneral" type="button" id=4
+                                                        data-toggle="collapse" data-target="#practices"
+                                                        aria-expanded="true" aria-controls="collapseExample"
+                                                        onclick="recogeID(this.id)">
+                                                        Internship
+                                                    </button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="collapse" id="academic">
+
+                                        <div class="row">
+
+                                            <!-- CIUDAD DE ORIGEN -->
+                                            <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Hometown</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityOrigin1 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Where
+                                                    are you studying?</address></span>
+                                            </div>
+
+                                            <!-- CIUDAD DESTINO 1 -->
+                                            <div id="cityDestination1Div" class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination1 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Where
+                                                    are you doing your exchange?</address></span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <!-- CHECK PARA MOSTRAR 2 OPCIONES MAS -->
+                                            <label><input type="checkbox" onchange="showHide(this.checked)">Click here
+                                                if you still don´t know your destination</label><br>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- CIUDAD DE DESTINO 2 -->
+
+                                            <div id="cityDestination2Div" style="display:none;"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Second option of destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination2 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Fill
+                                                    it if not sure about your
+                                                    destination yet</address></span>
+
+                                            </div>
+
+                                            <!-- CIUDAD DE DESTINO 3 -->
+
+                                            <div id="cityDestination3Div" style="display:none;"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Third option of destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination3 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Fill
+                                                    it if not sure about your
+                                                    destination yet</span>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- UNIVERSIDAD DE ORIGEN -->
+
+                                            <div id="universityOriginDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Hometown university</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.universityOrigin }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">In
+                                                    which university are you
+                                                    studying?</span>
+                                            </div>
+
+                                            <!-- UNIVERSIDAD DE DESTINO -->
+
+                                            <div id="universityDestinationDiv"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Destination university</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.universityDestination }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">In the
+                                                    exchange, in which university are
+                                                    you going to study?</span>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- COURSE -->
+
+                                            <div id="courseDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Year of the degree</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.course }}
+                                                </div>
+                                                <span
+                                                    class="form-text text-muted float-left textoExplicativoReg">Please,
+                                                    select the year of your
+                                                    degree</span>
+                                            </div>
+
+                                            <!-- STUDIES -->
+
+                                            <div id="studiesDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Degree</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.studies }}
+                                                </div>
+                                                <span
+                                                    class="form-text text-muted float-left textoExplicativoReg">Please,
+                                                    enter your degree</span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="collapse" id="aupair">
+
+                                        <div class="row">
+
+
+                                            <!-- CIUDAD DE ORIGEN -->
+                                            <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Hometown</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityOrigin1 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Where
+                                                    are you studying?</address></span>
+                                            </div>
+
+                                            <!-- CIUDAD DESTINO 1 -->
+                                            <div id="cityDestination1Div" class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination1 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Where
+                                                    are you doing your exchange?</address></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- CHECK PARA MOSTRAR 2 OPCIONES MAS -->
+                                            <label><input type="checkbox" onchange="showHide(this.checked)">Click here
+                                                if you still don´t know your destination</label><br>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- CIUDAD DE DESTINO 2 -->
+
+                                            <div id="cityDestination2Div" style="display:none;"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Second option of destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination2 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Fill
+                                                    it if not sure about your
+                                                    destination yet</address></span>
+
+                                            </div>
+
+                                            <!-- CIUDAD DE DESTINO 3 -->
+
+                                            <div id="cityDestination3Div" style="display:none;"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Third option of destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination3 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Fill
+                                                    it if not sure about your
+                                                    destination yet</span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="collapse" id="master">
+
+                                        <div class="row">
+
+                                            <!-- CIUDAD DE ORIGEN -->
+                                            <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Hometown</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityOrigin1 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Where
+                                                    are you studying?</address></span>
+                                            </div>
+
+                                            <!-- CIUDAD DESTINO 1 -->
+                                            <div id="cityDestination1Div" class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination1 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Where
+                                                    are you doing your exchange?</address></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- CHECK PARA MOSTRAR 2 OPCIONES MAS -->
+                                            <label><input type="checkbox" onchange="showHide(this.checked)">Click here
+                                                if you still don´t know your destination</label><br>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- CIUDAD DE DESTINO 2 -->
+
+                                            <div id="cityDestination2Div" style="display:none;"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Second option of destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination2 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Fill
+                                                    it if not sure about your
+                                                    destination yet</address></span>
+
+                                            </div>
+
+                                            <!-- CIUDAD DE DESTINO 3 -->
+
+                                            <div id="cityDestination3Div" style="display:none;"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Third option of destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination3 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Fill
+                                                    it if not sure about your
+                                                    destination yet</span>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- UNIVERSIDAD DE ORIGEN -->
+
+                                            <div id="universityOriginDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Hometown university</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.universityOrigin }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">In
+                                                    which university are you
+                                                    studying?</span>
+                                            </div>
+
+                                            <!-- UNIVERSIDAD DE DESTINO -->
+
+                                            <div id="universityDestinationDiv"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Destination university</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.universityDestination }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">In the
+                                                    exchange, in which university are
+                                                    you going to study?</span>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- STUDIES -->
+
+                                            <div id="studiesDiv" class="col-xl-12 col-sm-12 margenBotonNext">
+                                                <label for="" class="label">Degree</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.studies }}
+                                                </div>
+                                                <span
+                                                    class="form-text text-muted float-left textoExplicativoReg">Please,
+                                                    enter your degree</span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="collapse" id="practices">
+
+                                        <div class="row">
+
+                                            <!-- CIUDAD DE ORIGEN -->
+                                            <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Hometown</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityOrigin1 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Where
+                                                    are you studying?</address></span>
+                                            </div>
+
+                                            <!-- CIUDAD DESTINO 1 -->
+                                            <div id="cityDestination1Div" class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination1 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Where
+                                                    are you doing your exchange?</address></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <!-- CHECK PARA MOSTRAR 2 OPCIONES MAS -->
+                                            <label><input type="checkbox" onchange="showHide(this.checked)">Click here
+                                                if you still don´t know your destination</label><br>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- CIUDAD DE DESTINO 2 -->
+
+                                            <div id="cityDestination2Div" style="display:none;"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Second option of destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination2 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Fill
+                                                    it if not sure about your
+                                                    destination yet</address></span>
+
+                                            </div>
+
+                                            <!-- CIUDAD DE DESTINO 3 -->
+
+                                            <div id="cityDestination3Div" style="display:none;"
+                                                class="col-xl-6 col-sm-6 margenBotonNext">
+                                                <label for="" class="label">Third option of destination city</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.cityDestination3 }}
+                                                </div>
+                                                <span class="form-text text-muted float-left textoExplicativoReg">Fill
+                                                    it if not sure about your
+                                                    destination yet</span>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <!-- COMPANY-->
+
+                                            <div id="companyDiv" class="col-xl-12 col-sm-12 margenBotonNext">
+                                                <label for="" class="label">Degree</label>
+                                                <div class="input-group input-group-lg input-group">
+
+                                                    {{ form.company }}
+                                                </div>
+                                                <span
+                                                    class="form-text text-muted float-left textoExplicativoReg">Please,
+                                                    enter your company</span>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    
+                                </div>
+                                
+
+                                <div class="mar-top-35" style="overflow:auto;">
+
+                                    <button type="button" id="prevBtn" class="btn v3 float-left botonAtras"
+                                        onclick="nextPrev(-1)">Return</button>
+                                    <button type="button" id="nextBtn" class="btn v3 float-right botonGeneral"
+                                        onclick="nextPrev(1), Prefix()">Next</button>
+
+                                </div>
+                        </div>
+
+
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px;">
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                        </div>
+
+                        </form>
+
+                        <div class="mt-4">
+                            <div class="mar-top-40 res-box text-left">Already have an account? <a
+                                    class="btn v8 float-right botonGeneral" href="{% url 'Login' %}" class="ml-2">Log
+                                    in</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{form.errors}}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL DE ENVIO VERIFICACIÓN EMAIL -->
+
+<div class="modal fade" id="emailVerification" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">E-mail verification</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i
+                            class="ion-ios-close-empty"></i></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-coupon-code">
+                    <div class="store-content">
+                        <div class="text">
+                            Te hemos enviado un e-mail para la verificación de tu perfil.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="coupon-bottom">
+
+                <button type="button" class="btn v3 float-right botonGeneral" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -->
+
+<!--User login section ends-->
+<!--Login section ends-->
+<!-- Scroll to top starts-->
+<span class="scrolltotop"><i class="ion-arrow-up-c"></i></span>
+<!-- Scroll to top ends-->
+
+<!--Page Wrapper ends-->
+
+
+<!--Main js-->
+<script src="{% static 'js/main.js' %}"></script>
+<!-- Register js -->
+<script src="{% static 'js/register.js' %}"></script>
+<!-- Register js -->
+<script src="{% static 'js/hiding_atributes.js' %}"></script>
+<script src="{% static 'js/prefix.js' %}"></script>
+<!--Scripts ends-->
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+
+{% load i18n %}
+
+<!-- PRODUCTO BOOTSTRAP -->
+
+<main>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 mx-auto my-5">
+      <h6 class="display-6 fw-normal">{{product.name}}</h6>   
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+  <div class="container">
+    <div class="panel">
+        <div class="row">
+            <div class="col-xl-6 col-sm-12">
+            
+            <div class="pro-img-details">
+                  <img src="{{product.fotoURL}}" alt="" width="30">
+              </div>
+              <div class="pro-img-list">
+                  <a href="#">
+                      <img src="https://via.placeholder.com/115x100/87CEFA/000000" alt="">
+                  </a>
+                  <a href="#">
+                      <img src="https://via.placeholder.com/115x100/FF7F50/000000" alt="">
+                  </a>
+                  <a href="#">
+                      <img src="https://via.placeholder.com/115x100/20B2AA/000000" alt="">
+                  </a>
+                  <a href="#">
+                      <img src="https://via.placeholder.com/120x100/20B2AA/000000" alt="">
+                  </a>
+              </div>
+
+            </div>
+
+            <div class="col-xl-6 col-sm-12">
+            <h4 class="pro-d-title">
+                  <p class="lead">
+                      {{product.name}}
+                  </p>
+              </h4>
+              <p>
+                  Descripción del producto
+              </p>
+              <div class="product_meta">
+                  <span class="posted_in"> <strong>Categories:</strong> <a rel="tag" href="#">Jackets</a>, <a rel="tag" href="#">Men</a>, <a rel="tag" href="#">Shirts</a>, <a rel="tag" href="#">T-shirt</a>.</span>
+                  <span class="tagged_as"><strong>Tags:</strong> <a rel="tag" href="#">mens</a>, <a rel="tag" href="#">womens</a>.</span>
+              </div>
+
+            <div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Size</label>
+                    <select id="talla{{product.id}}" class="form-control">
+                        {% for tallas in product.tallas.all %}
+                        <option value="{{tallas.name}}">{{tallas.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Color</label>
+                    <select id="color{{product.id}}" class="form-control">
+                        {% for color in product.colores.all %}
+                        <option id="{{color.name}}" value="{{color.name}}">{{color.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Flag</label>
+                    <select id="bandera{{product.id}}" class="form-control">
+                        {% for bandera in product.bandera.all %}
+                        <option value="{{bandera.name}}"><img src="{{bandera.foto.url}}">{{bandera.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">Date</label>
+                    <input type="date" id="fecha{{product.id}}" class="editable"> </input>
+                </div>
+            </div>
+
+              <div class="m-bot15"> <strong>Price : </strong> <span class="amount-old">$544</span>  <span class="pro-price"> $300.00</span></div>
+              
+            <form class="row g-3">
+                
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3 dd-btn update-cart" data-product={{product.id}} data-action="add">Add to cart</button>
+                </div>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+
+
+     
+
+<!-- -->
+
+
+<script>
+
+var img = document.getElementById("imagen");
+
+var azul = document.getElementById("azul");
+var negro = document.getElementById("negro");
+
+azul.onclick = function(){
+    img.src="{%static 'images/tienda/ARG18_19BLUE.png'%}";
+}
+
+negro.onclick = function(){
+    img.src="{%static 'images/tienda/ARG18_19BLACK.png'%}";
+}
+
+</script>
+
+<!-- FIN TIENDA -->
+
+<!-- Scroll to top starts-->
+<span class="scrolltotop"><i class="ion-arrow-up-c"></i></span>
+<!-- Scroll to top ends-->
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+
+{% load i18n %}
+
+<!-- TIENDA BOOTSTRAP -->
+
+<main>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+      <h1 class="display-4 fw-normal">Shop</h1>
+      
+      <a class="btn btn-outline-secondary href="{% url 'Carrito' %}"" href="#">  Shopping cart  ({{cartItems}})</a>
+         
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+
+<div class="container pb-5 mb-sm-2">
+    <!-- Categories grid-->
+    <div class="row no-gutters">
+
+        <div class="col-xl-3 col-md-12 sidebar">
+            <!--<div class="widget search">
+                <form>
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button type="submit" class="btn btn-outline-dark">Search</button>
+                </form>
+            </div>-->
+
+      
+
+            <div class="input-group rounded">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon"/>
+                <button class="btn btn-primary">
+                    Buscar
+                </button>
+            </div>
+            
+            <!-- Tags -->
+            <div class="widget mt-4">
+                <h3 class="widget-title">Category</h3>
+                {% for cat in categorias%}
+                <ul class="list-tags listaNoPadding">
+                    <li class="listaFooter"><a href="#" class="btn v6 dark">{{cat.name}}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-xl-9 col-md-12">
+        
+        <div class="row">
+                {% for product in productos %}
+                <!-- Category--> 
+                <div class="col-lg-4 col-sm-3 col-12 category-card border border-collapse noBorde">
+                    <div class="card border-0">
+                        <a class="d-block" href="{% url 'ProductDetail' product.pk %}"><img class="d-block imgTienda" src="{{product.fotoURL}}" alt="Computers &amp; Accessories"></a>
+                        <div class="card-body pb-2">
+                            <h5><a href="{% url 'ProductDetail' product.pk %}" class="noEnlace">{{product.name}}</a></h5>
+                            <span class="font-weight-semibold">{{product.precio}}€</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!--pagination starts-->
+            <div class="post-nav nav-res pad-top-20 pad-bot-60">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2  col-xs-12 ">
+                        <div class="page-num text-center">
+                            <ul>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--pagination ends-->
+        </div>
+    </div>
+</div>
+
+</main>
+<!-- -->
+
+ 
+
+{% endblock %}

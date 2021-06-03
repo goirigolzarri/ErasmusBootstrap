@@ -1,0 +1,308 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+        <!--User Login section starts-->
+        <div class="user-login-section section-padding bg-fixed">
+            <div class="container margenTop50">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1  text-center">
+                        <div class="login-wrapper anchoRegistro">
+                        <div class="imgLogo">
+                            <img src="{% static 'images/EPCircularTexto.png' %}">
+                        </div>
+                        <div class="textoDegradado">
+                            <h3 class="margen50">Edit profile</h3>
+                        </div>
+                            <div class="ui-dash tab-content">
+                                <div class="tab-pane fade show active" id="login" role="tabpanel">
+                                    <form id="login-form" action="#" method="post">
+                                        {% csrf_token %}
+                                        
+                                            <!-- PASO 1 -->
+                                            <div class="tab">
+                                                
+                                                <div class="row mar-top-35">
+                                                    
+                                    
+                                                    <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                                        <label for="" class="label">Name</label>
+                                                        <div class="control has-icons-left">
+                                                            {{ form.first_name }}
+                                                            <span class="icon is-small is-left">
+                                                                <i class="fa fa-user"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    
+
+                                                    <div class="col-xl-6 col-sm-6 margenBotonNext">
+                                                        <label for="" class="label">Last name</label>
+                                                        <div class="control has-icons-left">
+                                                            {{ form.last_name }}
+                                                            <span class="icon is-small is-left">
+                                                                <i class="fa fa-user"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                                                    
+                                                <div class="row mar-top-20">
+                                                    
+                                                    <div class="col-xl-12 col-sm-12 margenBotonNext">
+                                                        
+                                                        {{ form.gender.label }}
+                                                        {{ form.gender }}                                                          
+                                                        
+                                                    </div>
+
+                                                    <div class="col-xl-12 col-sm-12 margenBotonNext">
+                                                        
+                                                        {{ form.date.label }}
+                                                        {{ form.date }}                                                          
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                                                                
+                                                    <div class="col-xl-14 col-sm-14 margenBotonNext">
+                                                        Country: {{ form.country }}
+                                                        <span class="icon is-small is-left">
+                                                            <i class="fa transgender-alt"></i>
+                                                        </span>                                                                
+                                                    </div>                                             
+                                             
+
+                                            </div>
+
+                                            <!-- PASO 2 -->
+                                            <div class="tab">
+
+                                                <div class="row mar-top-35">
+
+                                                    <div class="col-xl-6 col-sm-12 margenBotonNext">
+                                                
+                                                        {{ form.username.label }}
+                                                        {{ form.username }}                                                          
+                                                        
+                                                    </div>
+
+
+                                                    <div class="col-xl-6 col-sm-12 margenBotonNext">
+                                                        
+                                                        {{ form.email.label }}
+                                                        {{ form.email }}                                                          
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mar-top-20 col-xl-12">
+
+                                                    <div class= "field col-xl-3 col-sm-12">
+                                                        <div class="control has-icons-left  margenBotonNext">
+                                                            <label>Prefix</label>
+                                                            <div class="input-group input-group-solid">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">+</span>
+                                                                    <input type='text' id='prefix' readonly="readonly" class='form-control'/>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <span class="icon is-small is-left">
+                                                                <i class="fa fa-user"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class= "field col-xl-9 col-sm-12">
+                                                        <div class="control has-icons-left margenBotonNext">
+                                                            <label for="" class="label">Phone</label>
+                                                            <div class="control has-icons-left">
+                                                                {{ form.phone }}
+                                                                <span class="icon is-small is-left">
+                                                                    <i class="fa fa-user"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                             
+                                            </div>
+
+                                            <!-- PASO 3 -->
+                                            <div class="tab">
+                                                <div class="row margenBotonNext">  
+<!--
+                                                    <div class="col-xl-12 col-sm-12">
+                                                        <label for="" class="label">
+                                                            {{form.studentType.label}}
+                                                        </label>    
+                                                        <div class="control has-icons-left">
+                                                            {{ form.studentType }}
+                                                        </div>
+                                                    </div>
+                                                    -->
+                                                </div>
+
+                                                <div class="row margenBotonNext mar-top-15">
+                                                    <div class="col-xl-12 col-sm-12">
+                                                        <label for="" class="label">
+                                                            {{form.studentType.label}}
+                                                            <div class="mar-bot-20">
+                                                            {{form.studentType}}
+                                                            </div>
+                                                        </label>
+                                                        <div class="row">
+                                                        
+                                                            <div class="col-xl-3 col-sm-12">
+                                                                <button class="btn v3 botonAzul" type="button" id= 1 data-toggle="collapse" data-target="#academic" aria-expanded="true" aria-controls="collapseExample" onclick="recogeID(this.id)">
+                                                                    Bachelor
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="col-xl-3 col-sm-12">
+                                                                <button class="btn v3 botonAzul" type="button" id= 2 data-toggle="collapse" data-target="#aupair" aria-expanded="true" aria-controls="collapseExample" onclick="recogeID(this.id)">
+                                                                    Aupair
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="col-xl-3 col-sm-12">
+                                                                <button class="btn v3 botonAzul" type="button" id= 3 data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="collapseExample" onclick="recogeID(this.id)">
+                                                                    Master
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="col-xl-3 col-sm-12">
+                                                                <button class="btn v3 botonAzul" type="button" id= 4 data-toggle="collapse" data-target="#practices" aria-expanded="true" aria-controls="collapseExample" onclick="recogeID(this.id)">
+                                                                    Internship
+                                                                </button>
+                                                            </div>
+                                                           
+                                                        </div>
+
+                                                        <!-- <div class="row">
+                                                            <div class="collapse mar-top-20" id="academic">
+                                                                <div class="card card-body">
+                                                                    Academic
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="collapse mar-top-20" id="aupair">
+                                                                <div class="card card-body">
+                                                                    Au pair
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="collapse mar-top-20" id="master">
+                                                                <div class="card card-body">
+                                                                    Master
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="collapse mar-top-20" id="practices">
+                                                                <div class="card card-body">
+                                                                    Pracices
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                
+     
+
+                                                
+
+                                                    <div class="row margenBotonNext mar-top-35">
+                                                        <div class="col-xl-6 col-sm-12" >
+                                                            {{form.cityOrigin1.label}}{{ form.cityOrigin1 }}
+                                                        </div>
+                                                        <div id="cityDestination1Div" class="col-xl-6 col-sm-12" >
+                                                            {{form.cityDestination1.label}}
+                                                            {{ form.cityDestination1 }}
+                                                        </div>
+                                                                                
+                                                    </div>
+
+                                                    <div class="row mar-top-25">
+                                                        
+                                                        <div id="cityDestination2Div" class="col-xl-6 col-sm-12" >
+                                                            {{form.cityDestination2.label}}{{ form.cityDestination2 }}
+                                                        </div>
+                                                        <div id="cityDestination3Div" class="col-xl-6 col-sm-12" >
+                                                            {{form.cityDestination3.label}}{{ form.cityDestination3 }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mar-top-25">
+                                                        <div id= "universityOriginDiv" class="col-xl-6 col-sm-12" >
+                                                            {{ form.universityOrigin.label }}{{ form.universityOrigin }}
+                                                        </div>
+                                                        <div id= "universityDestinationDiv" class="col-xl-6 col-sm-12" >
+                                                            {{ form.universityDestination.label }}{{ form.universityDestination }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mar-top-25">
+                                                        <div id="courseDiv" class="col-xl-6 col-sm-12" >
+                                                            {{ form.course.label }}{{ form.course }}
+                                                        </div>                                                    
+                                                        <div id= "studiesDiv"class="col-xl-6 col-sm-12">
+                                                            {{ form.studies.label }}{{ form.studies }}
+                                                        </div> 
+                                                    </div>
+
+                                                    <div  class="row mar-top-25 mar-bot-35">
+                                                        <div id="companyDiv" class="col-xl-6 col-sm-12" >
+                                                            {{ form.company.label }}{{ form.company }}
+                                                        </div>
+                                                    </div>
+                                                
+
+                                                <button type="submit" class="btn btn-secondary">Register</button>
+
+                                            </div>
+
+                                            <div class="mar-top-35" style="overflow:auto;">
+                                                
+                                                    <button type="button" id="prevBtn" class="btn v3 float-left botonAtras" onclick="nextPrev(-1)">Return</button>
+                                                    <button type="button" id="nextBtn" class="btn v3 float-right botonAzul" onclick="nextPrev(1), Prefix()">Next</button>
+                                                </div>
+                                            </div>
+
+                                            
+                                            <!-- Circles which indicates the steps of the form: -->
+                                            <div style="text-align:center;margin-top:40px;">
+                                                <span class="step"></span>
+                                                <span class="step"></span>
+                                                <span class="step"></span>
+                                            </div>
+                                                                        
+                                    </form>
+
+                                    <div class= "mt-4">
+                                            <div class="mar-top-40 res-box text-left">Already have an account? <a class="btn v8 float-right botonAzul" href="{% url 'Login' %}" class="ml-2">Log in</a>
+                                            </div>
+                                    </div>
+                                </div>
+
+                               
+                                {{form.errors}}
+                            
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--User login section ends-->
+        <!--Login section ends-->
+        <!-- Scroll to top starts-->
+        <span class="scrolltotop"><i class="ion-arrow-up-c"></i></span>
+        <!-- Scroll to top ends-->
+    {% endblock %}

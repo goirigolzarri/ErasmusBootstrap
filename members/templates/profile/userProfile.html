@@ -1,0 +1,96 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+
+  
+<!--Dashboard breadcrumb starts-->
+<div style="width: 60% !important; margin:0 auto;">
+            <div class="dash-breadcrumb">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Dashboard breadcrumb ends-->
+            <!--Dashboard content starts-->
+            <div class="dash-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="recent-activity">
+                                <div class="act-title">
+                                    <h5><i class="ion-person"></i>Profile Details</h5>
+                                </div>
+                                <div class="profile-wrap">
+                                    <div class="row">
+                                        <div class="col-md-8 offset-md-2">
+                                            <div class="edit-profile-photo text-center mt-3">
+                                                <img src="{%static 'images/clients/reviewer-4.png'%}" alt="">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="my-profile">
+                                                <ul class="db-profile-info float-left">
+                                                    <li>
+                                                        <h6>Username :</h6>
+                                                        <span>{{user.username}} </span>
+                                                    </li>
+                                                    <li>
+                                                        <h6>First Name :</h6>
+                                                        <span>{{user.first_name}} </span>
+                                                    </li>
+                                                    <li>
+                                                        <h6>Last Name :</h6>
+                                                        <span> {{user.last_name}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <h6>Email Id :</h6>
+                                                        <span> {{user.email}}</span>
+                                                    </li>                                                   
+                                                </ul>
+
+                                                <ul class="db-profile-info float-right">   
+                                                    <li>
+                                                        <h6>Country :</h6>
+                                                        <span> {{user.country}}</span>
+                                                    </li>
+                                                  
+                                                    <li>
+                                                        <h6>Phone :</h6>
+                                                        <span> +{{user.country.id}} - {{user.phone}}</span>
+                                                    </li>
+                                                  
+                                                    <li>
+                                                        <h6>Student Type :</h6>
+                                                        <span> {{user.get_studentType_display}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'EditUserProfile'%}" class="btn v3 botonAzul">Edit profile</a>
+                                                        <a href="{% url 'ChangePassword' %}" class="btn v3 botonAzul">Change password
+                                                        </a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Dashboard content ends--></div>
+  <!-- Scroll to top starts-->
+<span class="scrolltotop"><i class="ion-arrow-up-c"></i></span>
+<!-- Scroll to top ends-->
+
+<!--Page Wrapper ends-->
+{% endblock %}

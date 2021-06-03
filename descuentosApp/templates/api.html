@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+
+
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to consume RESTful APIs with Django</title>
+  </head>
+  <body>
+    <h2>Api Apartamentos</h2>
+
+    <ul>
+      {% for list in page_obj %}
+
+      <h5>Empieza apartamento</h5>
+      <li> Id: {{list.id}} </li>
+      <li> Rank: {{list.rank}} </li>
+      <li> Publisehd: {{list.published}} </li>
+      <li> KindLabel:{{list.kindLabel}} </li>
+      <li> TypeLabel:{{list.typeLabel}} </li>
+      <li> Rentype{{list.rentType}} </li>
+      <li> Title:{{list.title}} </li>
+      <li> <a href="{{list.originalLink}}">Link</a>  </li>
+      <!-- <li> {{list.originalLink}} </li>
+        <Span>Sublinks</Span>
+        {% for link in localizedLinks %}
+        <li> {{link}} </li>
+        {% endfor %} -->
+        <!-- <Span>Acaban Sublinks</Span> -->
+      
+      <h5>Acaba apartamento</h5>
+      <br>
+
+      {% endfor %}
+    </ul>
+    <div class="pagination">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+  
+          <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+  
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
+  </body>
+
+</html>
+
+{% endblock %}

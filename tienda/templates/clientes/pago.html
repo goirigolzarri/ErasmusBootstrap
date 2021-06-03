@@ -1,0 +1,261 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+
+{% load i18n %}
+        
+<!-- CABECERA CARRITO -->
+<div class="breadcrumb-section" style="background-image: url(images/breadcrumb/breadcrumb-3.jpg)">
+    <div class="overlay op-5"></div>
+    <div class="container">
+        <div class="row align-items-center  pad-top-80">
+            <div class="col-md-6 col-12">
+                <div class="breadcrumb-menu">
+                    <h2 class="page-title">Booking Info</h2>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="breadcrumb-menu text-right sm-left">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Booking Info</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN CABECERA CARRITO -->
+
+<!-- COMIENZO CARRITO  -->
+<div class="list-details-section section-padding  add_list">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12">
+                <div class="add_list_content">
+                    <h4> <i class="ion-ios-information-outline"></i> Personal Information</h4>
+                   
+                        <div class="row">
+                            <form method="POST" id="form">
+                                {% csrf_token %}
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="fname">Name</label>
+                                            <input id="name" name="name" type="text" class="form-control filter-input">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="fname">Email</label>
+                                            <input id="email" name="email" type="text" class="form-control filter-input">
+                                        </div>
+                                    </div>
+
+                                    <h4> <i class="ion-ios-information-outline"></i> Shipping address</h4>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="fname">Adress</label>
+                                            <input id="adress" name="address" type="text" class="form-control filter-input">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="lname">City</label>
+                                            <input id="city" name="city" type="text" class="form-control filter-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="email">State/Province</label>
+                                        <input id="state" name="state" type="text" class="form-control filter-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="phone">Postal Code</label>
+                                        <input id="postalcode" name="postalcode" type="text" class="form-control filter-input">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                <button class="btn v7" type="submit">Confirm Adress</a>
+                                </div>
+                            </form>
+                            <div class="col-md-12">
+                                <div id="paypal-button-container"></div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row mar-top-20">
+                        <div class="col-sm-8  text-left">
+                            <div class="res-box mar-top-10">
+                                <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                <label for="remember">I've read and accept <a href="terms.html">terms &amp; conditions</a></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4  text-right">
+                            <div class="res-box sm-left">
+                                <button id="make-payment" class="btn v7" type="submit">Confirm &amp; Pay</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12">
+                <div class="boxed-widget summary">
+                    <h3><i class="icofont-book-alt"></i> Booking Summary</h3>
+                    <ul>
+                        <li>Item <span>Quantity        </span>   </li>
+                        {% for item in items %}
+                           
+                        
+                        
+                        <li>{{item.product.name}}<span>{{item.quantity}}</span>  </li>
+                        
+                        {% endfor %}
+                        
+                    </ul>
+                    <div class="total_cost clearfix border-top">
+                        <div class="float-left">
+                            <h4>Subtotal</h4>
+                        </div>
+                        <div class="float-right"><span>{{order.get_cart_total}} €</span></div>
+                    </div>
+                    <div class="coupon-code-wrap">
+                        <form action="#">
+                            <input placeholder="Have a Coupon ? enter here. . . .">
+                            <input type="submit" class="coupon_code" value="Apply">
+                        </form>
+                    </div>
+                    <div class="total_cost clearfix mar-top-40 border-top">
+                        <div class="float-left">
+                            <h4>Total</h4>
+                        </div>
+                        <div class="float-right"><span>{{order.get_cart_total}} €</span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN CARRITO -->
+
+<!-- Scroll to top starts-->
+<span class="scrolltotop"><i class="ion-arrow-up-c"></i></span>
+<script src="https://www.paypal.com/sdk/js?client-id=Abvk8Y-bfvMoUq285FUEnEL5H9AcG_WsfBT5I6w14ipmgX_WrgCxBH5oaqGsnhjRiYzeUzNPl6O37tcn&currency=EUR"></script>
+<script>
+    var total = parseFloat("{{order.get_cart_total}}").toFixed(2)
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+
+        style: {
+            color:  'blue',
+            shape:  'pill',
+            label:  'pay',
+            height: 40
+        },
+        createOrder: function(data, actions){
+            return actions.order.create({
+
+                purchase_units: [{
+                    amount:{
+                        value: total
+                    
+                    }
+                }]
+
+
+            });
+
+        },
+        onApprove: function(data, actions){
+            return actions.order.capture().then(function(details){
+                submitFormData()
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+
+<script type="text/javascript">
+    var total = parseFloat("{{order.get_cart_total}}")
+    
+    var form = document.getElementById('form');
+    form.addEventListener('submit', function(e){
+
+        e.preventDefault()
+            //     console.log('Form submitted...')
+            //     document.getElementById('form-button').classList.add("hidden")
+            //     document.getElementById('payment-info').classList.remove("hidden")
+            //      https://youtu.be/woORrr3QNh8 minut 48:30
+    })
+    document.getElementById('make-payment').addEventListener('click', function(e){
+
+        submitFormData()
+
+    })
+    function submitFormData(){
+
+        console.log('Payment button clicked')
+        var userFormData = {
+            'name':null,
+            'email': null,
+            'total': total,
+
+            
+
+        }
+
+        var shippingInfo = {
+            'address': null ,
+            'city': null,
+            'state': null,
+            'postalcode': null,
+
+        }
+        userFormData.name = form.name.value
+        userFormData.email = form.email.value
+
+
+        shippingInfo.address = form.address.value
+        shippingInfo.city = form.city.value
+        shippingInfo.state = form.state.value
+        shippingInfo.postalcode = form.postalcode.value
+
+        var url = '/shop/process_order/'
+        fetch(url, {
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({ 'form': userFormData, 'shipping': shippingInfo})
+
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            alert('Transaction completed');
+
+
+            cart = {}
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+            window.location.href = "{% url 'Tienda' %}"
+        })
+
+
+    }
+
+</script>
+
+<!-- Scroll to top ends-->
+
+{% endblock %}
+      

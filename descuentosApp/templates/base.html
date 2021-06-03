@@ -1,0 +1,288 @@
+﻿{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+
+
+<main>
+<!-- BLOQUE BUSQUEDA CIUDAD BOOTSTRAP -->
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+      <h1 class="display-4 fw-normal">Erasmus Planet</h1>
+      <p class="lead fw-normal nowrap">You can’t imagine, what is waiting for you around your city.</p>
+        <form class="row g-3">
+            <div class="col-xl-9 col-sm-12">
+                <input type="password" class="form-control" placeholder="What city or university are you looking for?">
+            </div>
+
+            
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Look for</button>
+            </div>
+        </form>
+    </div>
+  </div>
+  <!---->
+
+<!-- CARRUSEL DE CIUDADES -->
+
+<h1>Cities</h1>
+<div id="myCarousel" class="carousel slide slideCiudad" data-bs-ride="carousel">
+    
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Example headline.</h1>
+            <p>Some representative placeholder content for the first slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+<!---->
+
+
+</main>
+
+
+
+
+
+
+
+
+<!--Hero section starts
+<div class="video-area v1" style="height: 60vh !important;">
+    <div class="video-container" style="height: 60vh !important;">
+        <div class="overlay op-5"></div>
+
+
+        <div id="video-wrapper"></div>
+        <a class="player" data-property="{videoURL:'https://youtu.be/GDGB68VD5DE'}"></a>
+
+
+        <div class="container video-content">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="hero-title v2">
+                        Erasmus Planet
+                    </h1>
+                    <p class="hero-desc v2">
+                        You can’t imagine, what is waiting for you around your city
+                    </p>
+                </div>
+                <div class="col-md-12 text-center mar-top-20">
+                    <form class="hero__form v2 mar-bot-30">
+                        <div class="row">
+                            <div class="col-lg-10 col-md-10 col-12">
+                                <input
+                                    class="hero__form-input custom-select no-border noFlechaInput formularioResponsive"
+                                    name="search" id="tags" placeholder="What city or university are you looking for?">
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-12">
+                                <div class="submit_btn text-right md-left">
+                                    <button class="btn v3 mar-right-5 botonGeneral" type="submit"><i
+                                            class="ion-ios-search" aria-hidden="true"></i>Look for</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+<!-- AVISO COVID19 
+
+
+<div class="call-to-action pad-tb-30">
+    <div class="overlay op-7 green"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="action-title">
+                    <h2>Covid-19</h2>
+                    <p>
+                        Check the latest news about the measures against the coronavirus
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="call-to-action text-right sm-left">
+                    <a class="btn v9" href="https://reopen.europa.eu/" target="_blank">Check</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<!-- -->
+
+
+{% if not query %}
+
+<div class="hero-client-section pad-bot-90 section-padding RESPONSIVE">
+    <div class="container anchoContainer">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h2 class="titulo">CITIES</h2>
+            </div>
+            <div class="col-md-12 mar-bot-60">
+                <div class="testimonial-wrapper swiper-container">
+                    <!-- Tarjetas de guias -->
+                    <div class="swiper-wrapper">
+                        {% for guia in guiasTarjetas %}
+                        <div class="swiper-slide single-testimonial-item">
+                            <div class="testimonial-img text-center">
+                                <img src="static/images/clients/client_1.jpg" alt="...">
+                            </div>
+                            <div class="testimonial-content text-center">
+                                <ul class="product-rating">
+                                    <li><i class="ion-android-star"></i></li>
+                                    <li><i class="ion-android-star"></i></li>
+                                    <li><i class="ion-android-star"></i></li>
+                                    <li><i class="ion-android-star-half"></i></li>
+                                    <li><i class="ion-android-star-half"></i></li>
+                                </ul>
+                                <h5>{{guia.city}}</h5>
+                                <span>{{guia.title}}</span>
+                                <p>{{guia.body | safe}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- FIN TARJETA GUIA-->
+                </div>
+                <div class="client-pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Hero section ends-->
+{% else %}
+<br />
+<!-- BLOQUE SI NO ENCUENTRA LA CIUDAD INTRODUCIDA -->
+{% if not guides %}
+<!--error  start-->
+<div class="error-section section-padding mar-top-20 pad-bot-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3  error-text text-center">
+                <div class="error-content">
+                    <i class="ion-sad-outline"></i>
+                    <h4>We don't have your guide yet</h4>
+                    <p>Write your guide and <a href="{% url 'Propuestaguia' %}">upload to Erasmus Planet</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--error ends-->
+{% else %}
+{%for guide in guides %}
+
+<div class="popular-cities pad-bot-50 section-padding">
+    <div class="container anchoContainer">
+        <div class="row">
+            {%for guide in guides %}
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="popular-item mar-bot-30 mar-top 30">
+                    <div class="single-place">
+                        <a href="{% url 'Guia' guide.pk %}">
+                            <img class="single-place-image" src="{%static 'images/ciudad/bilbao.jpg'%}"
+                                alt="place-image">
+                            <div class="single-place-content">
+                                <h2 class="single-place-title textoTarjetaGuia">
+                                    <a href="grid-fullwidth-map.html">{{guide.city}}</a>
+                                </h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<!-- -->
+
+{% endfor %}
+{% endif %}
+{% endif %}
+
+<!--Partner section starts-->
+<!-- COLABORADORES -->
+<!-- 
+        <div class="partner-section style1 pad-top-60 pad-bot-110">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="swiper-container partner-wrap">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide single-partner">
+                                    <img src="{%static 'images/partners/1.png'%}" alt="...">
+                                </div>
+                                <div class="swiper-slide single-partner">
+                                    <img src="{%static 'images/partners/2.png'%}" alt="...">
+                                </div>
+                                <div class="swiper-slide single-partner">
+                                    <img src="{%static 'images/partners/3.png'%}" alt="...">
+                                </div>
+                                <div class="swiper-slide single-partner">
+                                    <img src="{%static 'images/partners/4.png'%}" alt="...">
+                                </div>
+                                <div class="swiper-slide single-partner">
+                                    <img src="{%static 'images/partners/5.png'%}" alt="...">
+                                </div>
+                                <div class="swiper-slide single-partner">
+                                    <img src="{%static 'images/partners/6.png'%}" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-btn v1 partner-next"><i class="ion-arrow-right-c posicionFlecha"></i></div>
+                        <div class="slider-btn v1 partner-prev"><i class="ion-arrow-left-c posicionFlecha"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+<!--Partner section ends-->
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!--Autocomplete-->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+    $(function () {
+
+        $("#tags").autocomplete({
+            source: "{% url 'autosuggest' %}",
+            minLength: 3
+        });
+    });
+
+</script>
+<!--Page Wrapper ends-->
+{% endblock %}
