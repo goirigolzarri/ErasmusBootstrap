@@ -691,3 +691,7 @@ select.form-control {
 .listaNoPadding {
     padding-left: 0px !important;
 }
+
+.unaLinea {
+    white-space: nowrap;
+}
