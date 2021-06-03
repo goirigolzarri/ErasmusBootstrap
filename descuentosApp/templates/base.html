@@ -13,7 +13,7 @@
       <p class="lead fw-normal unaLinea mb-4">You can’t imagine, what is waiting for you around your city.</p>
         <form class="row g-3">
             <div class="col-xl-9 col-sm-12">
-                <input type="text" class="form-control" placeholder="What city or university are you looking for?">
+                <input type="text" name="search" id="search" class="form-control" placeholder="What city or university are you looking for?">
             </div>
 
             
@@ -260,7 +260,7 @@
 <script>
     $(function () {
 
-        $("#tags").autocomplete({
+        $("#search").autocomplete({
             source: "{% url 'autosuggest' %}",
             minLength: 3
         });
