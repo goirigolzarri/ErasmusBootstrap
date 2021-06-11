@@ -21,6 +21,7 @@
 
     <!-- SCRIPT REGISTRO -->
     <script src="{%static 'js/register.js'%}"></script>
+    
 
     <link rel="icon" type="image/png" href="{%static 'images/EPCircular.ico'%}" with="32" height="32">
 
@@ -50,61 +51,68 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">            
-                <a href="{% url 'api' %}" target="_blank" class="nav-link" aria-current="page">
-                    Accommodations
-                </a>
-            </li>
-            <li class="nav-item"> 
-                <a href="{% url 'Descuentos' %}" class="nav-link">
-                    Discount
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'Tienda' %}" class="nav-link">
-                    {% blocktrans %} Shop {% endblocktrans %}                                  
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'Contacto' %}" class="nav-link">      
-                    Contact
-                </a>
-            </li>
+
+                <li class="nav-item separacionMenu">            
+                    <a href="{% url 'api' %}" target="_blank" class="nav-link" aria-current="page">
+                        Accommodations
+                    </a>
+                </li>
+
+                <li class="nav-item separacionMenu"> 
+                    <a href="{% url 'Descuentos' %}" class="nav-link">
+                        Discount
+                    </a>
+                </li>
+
+                <li class="nav-item separacionMenu">
+                    <a href="{% url 'Tienda' %}" class="nav-link">
+                        {% blocktrans %} Shop {% endblocktrans %}                                  
+                    </a>
+                </li>
+
+                <li class="nav-item separacionMenu">
+                    <a href="{% url 'Contacto' %}" class="nav-link">      
+                        Contact
+                    </a>
+                </li>
+
             </ul>
             
             
             {% if user.is_authenticated %}
 
-            <form>
+            
+            <form class="inputMenu">
                 <input class="form-control" type="text" placeholder="Search" aria-label="Search">
             </form>
             <div class="text-end">          
-            <a type="button" class="btn btn-danger" href="{% url 'UserProfile' %}">
-                My profile
-            </a>
+                <a type="button" class="btn btn-dark btnMenu btnAccesos" href="{% url 'UserProfile' %}">
+                    My profile
+                </a>
+
+                {% if user.is_superuser %}
+
+                <a type="button" class="btn btn-dark btnMenu btnAccesos" href="{% url 'Admin' %}">
+                    Admin
+                </a>
+            </div>
+
+            {% endif %}
             
-            <a type="button" class="btn btn-info" href="{% url 'logout' %}">
+            <a type="button" class="btn btn-dark btnAccesos" href="{% url 'logout' %}">
                 Log out
             </a>
             
 
-            {% if user.is_superuser %}
-
-            <a type="button" class="btn btn-info" href="{% url 'Admin' %}">
-                Admin
-            </a>
-
-            </div>
-
-            {% endif %}
+            
             {% else %}
 
             <div class="text-end">          
-            <a type="button" class="btn btn-danger" href="{% url 'login' %}">
+                <a type="button" class="btn btn-link btnMenu btnAccesos" href="{% url 'login' %}">
                 Log in
                 </a>
             
-            <a type="button" class="btn btn-info" href="{% url 'UserRegistrationView' %}">
+                <a type="button" class="btn btn-link btnAccesos" href="{% url 'UserRegistrationView' %}">
                 Sign in
                 </a>
             </div>
@@ -121,96 +129,99 @@
              
     </div>
 
+<span class="ir-arriba">UP</span>
+
 
 <!-- FOOTER BOOTSTRAP -->
-<footer class="footer mt-auto py-3 bg-light">
+<footer class="footer mt-auto py-3 bg-dark fuenteFooter">
   <div class="container">
     <div class="row">
         <div class="col-xl-4 col-md-12">
             <a href="#"> 
-                <img class="logoFooter" src="{%static 'images/logo/logoCompletoEP.png'%}" alt="logo" width="100">
+                <img class="logoFooter mt-3" src="{%static 'images/menu/logoMenuVacio.png'%}" alt="logo" width="100">
             </a>
         </div>
         <div class="col-xl-2 col-md-12">
-            <h4>Helpful Links</h4>
-            <ul class="list listaFooter">
-                <li>
-                    <a class="link-hov style2 noSubrayado" href="{% url 'login' %}">Login</a>
+            <h4 class="mt-3 mb-4">Helpful Links</h4>
+            <ul class="list listaFooter listaFooter">
+                <li class="mb-3">
+                    <a class="link-hov style2 noSubrayado fuenteFooter" href="{% url 'login' %}">Login</a>
                 </li>
                 {% if user.is_authenticated %}
-                    <li>
-                    <a class="link-hov style2 noSubrayado" href="{% url 'UserProfile' %}">My Account</a>
-                    </li>
+                <li class="mb-3">
+                    <a class="link-hov style2 noSubrayado fuenteFooter" href="{% url 'UserProfile' %}">My Account</a>
+                </li>
                 {% endif %}
-                <li>
-                    <a class="link-hov style2 noSubrayado" href="{% url 'PrivacyPolicy' %}">Privacy policy</a>
+                <li class="mb-3">
+                    <a class="link-hov style2 noSubrayado fuenteFooter" href="{% url 'PrivacyPolicy' %}">Privacy policy</a>
                 </li>
-                <li>
-                    <a class="link-hov style2 noSubrayado" href="{% url 'Faq' %}">FAQ</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-xl-2 col-md-12">
-            <h4>Category</h4>
-            <ul class="list listaFooter">
-                <li>
-                    <a class="link-hov style2 noSubrayado" href="{% url 'Tienda' %}">Shop</a>
+                <li class="mb-3">
+                    <a class="link-hov style2 noSubrayado fuenteFooter" href="{% url 'Faq' %}">FAQ</a>
                 </li>
             </ul>
         </div>
         <div class="col-xl-2 col-md-12">
-            <h4>Payment</h4>
-            <ul class="list listaFooter">
-                <li>                                   
-                    <a class="link-hov style2 noSubrayado">PayPal</a>                                    
+            <h4 class="mt-3 mb-4">Category</h4>
+            <ul class="list listaFooter listaFooter">
+                <li class="mb-3">
+                    <a class="link-hov style2 noSubrayado fuenteFooter" href="{% url 'Tienda' %}">Shop</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xl-2 col-md-12">
+            <h4 class="mt-3 mb-4">Payment</h4>
+            <ul class="list listaFooter listaFooter">
+                <li class="mb-3">                                   
+                    <a class="link-hov style2 noSubrayado fuenteFooter">PayPal</a>                                    
+                </li>
+
+                <li class="mb-3">
+                    <a class="link-hov style2 noSubrayado fuenteFooter">Credit card</a>
                 </li>
 
                 <li>
-                    <a class="link-hov style2 noSubrayado">Credit card</a>
-                </li>
-
-                <li>
             </ul>
         </div>
         <div class="col-xl-2 col-md-12">
-            <h4>Contact us</h4>
-            <ul class="list  listaFooter">                                
-                <li>
+            <h4 class="mt-3 mb-4">Contact us</h4>
+            <ul class="list  listaFooter listaFooter">                                
+                <li class="mb-3">
                     <div class="contact-info">
                         <div class="icon">
                             <i class=""></i>
                         </div>
                         <div class="text">
-                            <a href="mailto:info@erasmusplanet.com" class="link-hov style2 noSubrayado">hello@erasmusplanet.com</a>
+                            <a href="mailto:info@erasmusplanet.com" class="link-hov style2 noSubrayado fuenteFooter">hello@erasmusplanet.com</a>
                         </div>
                     </div>
                 </li>
-                <li>
+                <li class="mb-3">
                     <div class="contact-info">
                         <div class="icon">
                             <i class=""></i>
                         </div>
                         <div class="text">
-                            <a href="tel:+34697962671" class="link-hov style2 noSubrayado">+34 697 96 26 71</a>
+                            <a href="tel:+34697962671" class="link-hov style2 noSubrayado fuenteFooter">+34 697 96 26 71</a>
                         </div>
                     </div>
                 </li>
             </ul>
-            <ul class="social-buttons style2">
-                <li>
+            <ul class="social-buttons style2 listaFooter">
+                <li class="mb-3">
                     <a href="https://www.instagram.com/erasmus.planet/" target="_blank">
                     <i class="ion-social-instagram iconoFooter"></i>
                     </a>
                 </li>
                 <!--<li><a href="#" target="_blank"><i class="ion-social-facebook iconoFooter"></i></a></li>-->
             </ul>
-
         </div>
+        <hr>
+         <h6 class="unaLinea mt-3 mb-5 text-center"><span id="fecha"></span>&nbsp;© Erasmus Planet. All righs reserved. </h6>
     </div>
   </div>
 </footer>
 <!---->
-
+    
       <!---->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
@@ -270,6 +281,32 @@
 
     </script>
 
+    <script>
+    var ano = (new Date).getFullYear();
+            $(document).ready(function() {
+                $("#fecha").text(ano);
+            });
+    </script>
+
+    <script>
+    $(document).ready(function(){
+
+	$('.ir-arriba').click(function(){
+		$('body, html').animate({
+			scrollTop: '0px'
+		}, 300);
+	});
+
+	$(window).scroll(function(){
+		if( $(this).scrollTop() > 0 ){
+			$('.ir-arriba').slideDown(300);
+		} else {
+			$('.ir-arriba').slideUp(300);
+		}
+	});
+
+});
+</script>
 
   </body>
 

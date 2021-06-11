@@ -7,7 +7,7 @@
 
 <main>
 <!-- BLOQUE BUSQUEDA CIUDAD BOOTSTRAP -->
-  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
     <div class="col-md-5 mx-auto my-5">
       <h1 class="display-4 fw-normal mb-4">Erasmus Planet</h1>
       <p class="lead fw-normal unaLinea mb-4">You can’t imagine, what is waiting for you around your city.</p>
@@ -26,40 +26,48 @@
   <!---->
 
   {% if not query %}
-
+    
+    <div class="container pb-5">
     <h1 class="text-center mb-5">Cities</h1>
 
       <!-- BLOQUE DE CARROUSEL DE TARJETAS DE GUIA ALEATORIAS -->
     
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        {% for guia in guiasTarjetas %}
-        
-        <div class="carousel-inner">
-  
-        <div class="carousel-item active">
-            <img src="..." class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-            <h5>{{guia.city}}</h5>
-            <p>{{guia.title}}</p>
-        
-        </div>
-    </div>
-    
-  {% endfor %}
+       
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
 
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+                {% for guia in guiasTarjetas %}
+        
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'images/about/about.png'%}" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{guia.city}}</h5>
+                        <p>{{guia.title}}</p>
+                        <button class="btn btn-outline-secondary">View</button>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+
+    {% endfor %}
+    
+    <!--
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    -->
 </div>
       
 {% else %}
@@ -67,9 +75,9 @@
 <!-- SI NO ENCUENTRA LA CIUDAD QUE INTRODUCIMOS EN EL FORMULARIO -->
 
 {% if not guides %}
-<div>
-<p>We don't have your guide yet</p>
-<p>Write your guide and <a href="{% url 'Propuestaguia' %}">upload to Erasmus Planet</a></p>
+<div class="container pb-5">
+<p class="lead textoCentrado">We don't have your guide yet</p>
+<p class="lead textoCentrado">Write your guide and <a href="{% url 'Propuestaguia' %}">upload to Erasmus Planet</a></p>
 </div>
 
 
@@ -79,22 +87,23 @@
 {% for guide in guides %}
 
 
-<div class="container">
+<div class="container pb-5">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       {% for guide in guides %}
         <div class="col">
           <div class="card shadow-sm">
-            
 
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="lead">{{guide.city}}</p>
+              <p class="card-text">{{guia.description}}</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">{{guide.city}}</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <div class="btn-group">                  
+                  
+                  <a href="{% url 'Guia' guide.pk %}" type="button" class="btn btn-sm btn-outline-info">View</a>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
@@ -108,148 +117,6 @@
 {% endif %}
 
 </main>
-
-
-
-
-
-
-
-
-
-
-
-{% if not query %}
-
-<div class="hero-client-section pad-bot-90 section-padding RESPONSIVE">
-    <div class="container anchoContainer">
-        <div class="row">
-            <div class="col-md-8 offset-md-2 text-center">
-                <h2 class="titulo">CITIES</h2>
-            </div>
-            <div class="col-md-12 mar-bot-60">
-                <div class="testimonial-wrapper swiper-container">
-                    <!-- Tarjetas de guias -->
-                    <div class="swiper-wrapper">
-                        {% for guia in guiasTarjetas %}
-                        <div class="swiper-slide single-testimonial-item">
-                            <div class="testimonial-img text-center">
-                                <img src="static/images/clients/client_1.jpg" alt="...">
-                            </div>
-                            <div class="testimonial-content text-center">
-                                <ul class="product-rating">
-                                    <li><i class="ion-android-star"></i></li>
-                                    <li><i class="ion-android-star"></i></li>
-                                    <li><i class="ion-android-star"></i></li>
-                                    <li><i class="ion-android-star-half"></i></li>
-                                    <li><i class="ion-android-star-half"></i></li>
-                                </ul>
-                                <h5>{{guia.city}}</h5>
-                                <span>{{guia.title}}</span>
-                                <p>{{guia.body | safe}}</p>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <!-- FIN TARJETA GUIA-->
-                </div>
-                <div class="client-pagination"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--Hero section ends-->
-{% else %}
-<br />
-<!-- BLOQUE SI NO ENCUENTRA LA CIUDAD INTRODUCIDA -->
-{% if not guides %}
-<!--error  start-->
-<div class="error-section section-padding mar-top-20 pad-bot-20">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3  error-text text-center">
-                <div class="error-content">
-                    <i class="ion-sad-outline"></i>
-                    <h4>We don't have your guide yet</h4>
-                    <p>Write your guide and <a href="{% url 'Propuestaguia' %}">upload to Erasmus Planet</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--error ends-->
-{% else %}
-{%for guide in guides %}
-
-<div class="popular-cities pad-bot-50 section-padding">
-    <div class="container anchoContainer">
-        <div class="row">
-            {%for guide in guides %}
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="popular-item mar-bot-30 mar-top 30">
-                    <div class="single-place">
-                        <a href="{% url 'Guia' guide.pk %}">
-                            <img class="single-place-image" src="{%static 'images/ciudad/bilbao.jpg'%}"
-                                alt="place-image">
-                            <div class="single-place-content">
-                                <h2 class="single-place-title textoTarjetaGuia">
-                                    <a href="grid-fullwidth-map.html">{{guide.city}}</a>
-                                </h2>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
-
-<!-- -->
-
-{% endfor %}
-{% endif %}
-{% endif %}
-
-<!--Partner section starts-->
-<!-- COLABORADORES -->
-<!-- 
-        <div class="partner-section style1 pad-top-60 pad-bot-110">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="swiper-container partner-wrap">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide single-partner">
-                                    <img src="{%static 'images/partners/1.png'%}" alt="...">
-                                </div>
-                                <div class="swiper-slide single-partner">
-                                    <img src="{%static 'images/partners/2.png'%}" alt="...">
-                                </div>
-                                <div class="swiper-slide single-partner">
-                                    <img src="{%static 'images/partners/3.png'%}" alt="...">
-                                </div>
-                                <div class="swiper-slide single-partner">
-                                    <img src="{%static 'images/partners/4.png'%}" alt="...">
-                                </div>
-                                <div class="swiper-slide single-partner">
-                                    <img src="{%static 'images/partners/5.png'%}" alt="...">
-                                </div>
-                                <div class="swiper-slide single-partner">
-                                    <img src="{%static 'images/partners/6.png'%}" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slider-btn v1 partner-next"><i class="ion-arrow-right-c posicionFlecha"></i></div>
-                        <div class="slider-btn v1 partner-prev"><i class="ion-arrow-left-c posicionFlecha"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
-<!--Partner section ends-->
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

@@ -15,68 +15,67 @@
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
   </div>
-<div class="container">
-<div class="row">
-<div class="col-xl-8 col-sm-12">
-	<form class="row g-3" method="POST" id="contact_form">
-{% csrf_token %}
-	<div class="col-md-6">
-		<label for="inputEmail4" class="form-label">First name</label>
-		{{form.first_name}}
-	</div>
-	<div class="col-md-6">
-		<label for="inputPassword4" class="form-label">Last name</label>
-		{{form.last_name}}
-	</div>
 
-	<div class="col-md-6">
-		<label for="inputEmail4" class="form-label">Email</label>
-		{{form.email}}
-	</div>
-	<div class="col-md-6">
-		<label for="inputPassword4" class="form-label">Subject</label>
-		{{form.subject}}
-	</div>
+	<div class="container">
+	<div class="row">
+		<div class="col-xl-8 col-sm-12 mt-4">
+			<form class="row g-3" method="POST" id="contact_form">
+				{% csrf_token %}
+				<div class="col-md-6 mt-3">
+					<label for="inputEmail4" class="form-label">First name</label>
+					{{form.first_name}}
+				</div>
+				<div class="col-md-6 mt-3">
+					<label for="inputPassword4" class="form-label">Last name</label>
+					{{form.last_name}}
+				</div>
 
-	<div class="col-md-12">
-		<label for="inputZip" class="form-label">Say something about us...</label>
-		{{form.body}}
-	</div>
+				<div class="col-md-6 mt-3">
+					<label for="inputEmail4" class="form-label">Email</label>
+					{{form.email}}
+				</div>
+				<div class="col-md-6 mt-3">
+					<label for="inputPassword4" class="form-label">Subject</label>
+					{{form.subject}}
+				</div>
 
-	<div class="col-3">
-		<div class="form-check">
-		<input class="form-check-input" type="checkbox" id="gridCheck">
-		<label class="form-check-label" for="gridCheck">
-			Check me out
-		</label>
+				<div class="col-md-12 mt-3">
+					<label for="inputZip" class="form-label">Say something about us...</label>
+					{{form.body}}
+				</div>
+
+				<div class="col-6 mt-5 mb-5">
+					<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="gridCheck">
+					<label class="form-check-label" for="gridCheck">
+						Check me out
+					</label>
+					</div>
+				</div>
+
+				<div class="col-6 mt-5 mb-5">
+					<button type="submit" class="btn btn-primary botonNext">Send message</button>
+				</div>
+
+			</form>
 		</div>
-	</div>
 
-	<div class="col-9">
-		<button type="submit" class="btn btn-primary">Send message</button>
-	</div>
+		<div class="col-xl-4 col-sm-12 mt-4">
+			<div class="header">
+				<h2>Helpful Links</h2>
+			</div>
 
-	</form>
-</div>
-<div class="col-xl-4 col-sm-12">
-	<div class="contact-widget sidebar-widget res-box mar-bot-30">
-				<div class="footer-content nav">
-				<h2 class="title">Helpful Links</h2>
+			<div class="body widget">
 				<ul class="list listaFooter">
-					<li><a class="link-hov style2 phone" href="tel://1234567920">+34 697 96 26 71</a></li>
-					<li><a class="link-hov style2 email" href="mailto:info@yoursite.com">hello@erasmusplanet.com</a></li>
+					<li class="mt-3"><a class="link-hov style2 phone noSubrayado textoNegro" href="tel:+34697962671">+34 697 96 26 71</a></li>
+					<li class="mt-3"><a class="link-hov style2 email noSubrayado textoNegro" href="mailto:helllo@erasmusplanet.com">hello@erasmusplanet.com</a></li>
 				<!--	<li><a class="link-hov style2 url" href="http://gettemplates.co">Bilbao</a></li>  -->
 				</ul>
 			</div>
-</div>
-</div>
-
-</div>
+		</div>
+	</div>
 </main>
 <!---->
 
-
-
-	
 <!--Page Wrapper ends-->
 {% endblock %}
