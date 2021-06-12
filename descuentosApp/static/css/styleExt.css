@@ -576,3 +576,15 @@ select.form-control {
 .btnAccesos:hover {
     color: #CCCCCC !important;
 }
+
+.flotarDerecha {
+    float: right;
+}
+
+.paddingListaPago {
+    padding-left: 20px;
+}
+
+.negrita {
+    font-weight: bold;
+}

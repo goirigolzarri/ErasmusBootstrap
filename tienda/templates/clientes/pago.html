@@ -5,8 +5,130 @@
 {%load static%}
 
 {% load i18n %}
+
+
+<main>
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 mx-auto my-5">
+      <h6 class="display-6 fw-normal">Booking info</h6>   
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+
+
+  <div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-xl-6 col-12">
+            <form method="POST" id="form">
+            {% csrf_token %}
+                <div class="row">
+                    <div class="col-xl-6 col-12">
+                        <label class="label" for="fname">Name</label>
+                        <input id="name" name="name" type="text" class="form-control filter-input">
+                    </div>
+                    <div class="col-xl-6 col-12">
+                        <label class="label" for="fname">Email</label>
+                        <input id="email" name="email" type="text" class="form-control filter-input">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-xl-6 col-12">
+                        <label class="label">Adress</label>
+                        <input id="adress" name="address" type="text" class="form-control filter-input">
+                    </div>
+                    <div class="col-xl-6 col-12">
+                        <label class="label" for="lname">City</label>
+                        <input id="city" name="city" type="text" class="form-control filter-input">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-xl-6 col-12">
+                        <label class="label">State / Province</label>
+                        <input id="state" name="state" type="text" class="form-control filter-input">
+                    </div>
+                    <div class="col-xl-6 col-12">
+                        <label class="label" for="lname">Postal Code</label>
+                        <input id="postalcode" name="postalcode" type="text" class="form-control filter-input">
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-xl-6 col-12">
+                    <div id="paypal-button-container"></div>
+                    </div>
+                    <div class="col-xl-6 col-12">
+                        <button class="btn btn-primary" type="submit">Confirm adress</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-xl-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Booking summary</h4>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item negrita">Item
+                        <span class="flotarDerecha negrita">Quantity</span>
+                    </li>
+                    
+                    {% for item in items %}
+                    <li class="list-group-item listaFooter paddingListaPago">{{item.product.name}}
+                        <span class="flotarDerecha">{{item.quantity}}</span>
+                    </li>
+                    
+                    {% endfor %}                        
+                </ul>
+
+                <div class="card-body">
+                    
+                            <h4>Subtotal</h4>
+                        
+                        <div class="flotarDerecha">
+                            <span>{{order.get_cart_total}} €</span>
+                        </div>
+                </div>
+                
+                <div class="card-body">
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-xl-9 col-12">
+                                <input class="form-control" placeholder="Have a coupon?">
+                            </div>
+
+                            <div class="col-xl-3 col-12">
+                                <input type="submit" class="btn btn-primary flotarDerecha" value="Apply">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-body">
+                   
+                            <h4>Total</h4>
+                        
+                        <div class="flotarDerecha">
+                            <span>{{order.get_cart_total}} €</span>
+                        </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+</main>
+
+
         
-<!-- CABECERA CARRITO -->
+<!-- CABECERA CARRITO 
 <div class="breadcrumb-section" style="background-image: url(images/breadcrumb/breadcrumb-3.jpg)">
     <div class="overlay op-5"></div>
     <div class="container">
@@ -27,9 +149,7 @@
         </div>
     </div>
 </div>
-<!-- FIN CABECERA CARRITO -->
 
-<!-- COMIENZO CARRITO  -->
 <div class="list-details-section section-padding  add_list">
     <div class="container">
         <div class="row">
@@ -146,7 +266,7 @@
         </div>
     </div>
 </div>
-<!-- FIN CARRITO -->
+FIN CARRITO -->
 
 <!-- Scroll to top starts-->
 <span class="scrolltotop"><i class="ion-arrow-up-c"></i></span>

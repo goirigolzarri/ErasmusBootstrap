@@ -52,7 +52,6 @@
               </p>
               <div class="product_meta">
                   <span class="posted_in"> <strong>Categories:</strong> <a rel="tag" href="#">Jackets</a>, <a rel="tag" href="#">Men</a>, <a rel="tag" href="#">Shirts</a>, <a rel="tag" href="#">T-shirt</a>.</span>
-                  <span class="tagged_as"><strong>Tags:</strong> <a rel="tag" href="#">mens</a>, <a rel="tag" href="#">womens</a>.</span>
               </div>
 
             <div>
@@ -72,21 +71,10 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Flag</label>
-                    <select id="bandera{{product.id}}" class="form-control">
-                        {% for bandera in product.bandera.all %}
-                        <option value="{{bandera.name}}"><img src="{{bandera.foto.url}}">{{bandera.name}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Date</label>
-                    <input type="date" id="fecha{{product.id}}" class="editable"> </input>
-                </div>
+                
             </div>
 
-              <div class="m-bot15"> <strong>Price : </strong> <span class="amount-old">$544</span>  <span class="pro-price"> $300.00</span></div>
+            <div class="mt-5 mb-5"> <strong>Price : </strong> <span class="amount-old">$544</span>  <span class="pro-price"> $300.00</span></div>
               
             <form class="row g-3">
                 
