@@ -24,307 +24,200 @@
 <main class="mt-5">
     <div class="container">
 
-        <form id="login-form" action="#" method="post" class="row needs-validation" novalidate>
-        {% csrf_token %}
+    <form id="msform" action="#" method="post" > 
+        <!-- progressbar -->
+        <ul id="progressbar">
+            <li class="active" id="account"><strong>Personal</strong></li>
+            <li id="personal"><strong>Account</strong></li>
+            <li id="payment"><strong>User</strong></li>
+            <li id="confirm"><strong>Finish</strong></li>
+        </ul> <!-- fieldsets -->
 
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item anchoStepsRegistro" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#personalInformation" type="button" role="tab" aria-controls="home" aria-selected="true">Personal information</button>
-                </li>
-                <li class="nav-item anchoStepsRegistro" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#accountInformation" type="button" role="tab" aria-controls="profile" aria-selected="false">Account information</button>
-                </li>
-                <li class="nav-item anchoStepsRegistro" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#userInformation" type="button" role="tab" aria-controls="contact" aria-selected="false">User information</button>
-                </li>
-                
-            </ul>
-            <div class="tab-content" id="myTabContent">
+        <!-- PERSONAL INFORMATION -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Personal Information</h2>
 
-                <div class="tab-pane fade show active" id="personalInformation" role="tabpanel" aria-labelledby="home-tab">
-
-                    <div class="row mt-5">
-                        <div class="col-md-6 col-12">
-                            <label for="validationCustom01" class="form-label">First name</label>
+                <div class="row">
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom01" class="form-label">First name</label>
                             {{ form.first_name }}
                             <div class="valid-feedback">
                             Looks good!
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <label for="validationCustom02" class="form-label">Last name</label>
+                        </div> 
+                    </div>
+
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom01" class="form-label">Last name</label>
                             {{ form.last_name }}
                             <div class="valid-feedback">
                             Looks good!
-                            </div>
-                        </div>
-                    </div> 
+                        </div> 
+                    </div>
+                </div>
 
-                    <div class="row mt-5">
-
-                        <div class="col-md-4 col-12">
-                            <label for="validationCustom04" class="form-label">Gender</label>
+                <div class="row">
+                    <div class="col-xl-4 col-12">
+                        <label for="validationCustom01" class="form-label">Gender</label>
                             {{ form.gender }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
+                            <div class="valid-feedback">
+                            Looks good!
+                        </div> 
+                    </div>
 
-                        <div class="col-md-4 col-12">
-                            <label for="validationCustom04" class="form-label">Date of birth</label>
+                    <div class="col-xl-4 col-12">
+                        <label for="validationCustom01" class="form-label">Date of birth</label>
                             {{ form.date }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
+                            <div class="valid-feedback">
+                            Looks good!
+                        </div> 
+                    </div>
 
-                        <div class="col-md-4 col-12">
-                            <label for="validationCustom04" class="form-label">Contry</label>
+                    <div class="col-xl-4 col-12">
+                        <label for="validationCustom01" class="form-label">Country</label>
                             {{ form.country }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-                    </div>   
+                            <div class="valid-feedback">
+                            Looks good!
+                        </div> 
+                    </div>
+                </div>
 
-                    <div class="row mt-5">
-                        <div class="col-md-6 col-12">
-                            <label for="validationCustom02" class="form-label">Last name</label>
+                <div class="row">
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom01" class="form-label">Since</label>
                             {{ form.date_inicio }}
                             <div class="valid-feedback">
                             Looks good!
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-12">
-                            <label for="validationCustom02" class="form-label">Last name</label>
-                            {{ form.date_inicio }}
-                            <div class="valid-feedback">
-                            {{ form.date_fin }}
-                            </div>
-                        </div>
-                    </div>    
-
-                    
-                            
-                </div>
-
-                <div class="tab-pane fade" id="accountInformation" role="tabpanel" aria-labelledby="profile-tab">
-
-                    <div class="row mt-5">
-                        <div class="col-md-6 col-12">
-                            <label for="validationCustom02" class="form-label">Username</label>
-                            {{ form.username }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-                        
-
-                        <div class="col-md-6 col-12">
-                            <label for="validationCustom02" class="form-label">E-mail</label>
-                            {{ form.email }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-                        
+                        </div> 
                     </div>
 
-                    <div class="row mt-5">
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom01" class="form-label">To</label>
+                            {{ form.date_fin }}
+                            <div class="valid-feedback">
+                            Looks good!
+                        </div> 
+                    </div>
+                </div>
+            </div> 
+            <input type="button" name="next" class="next action-button flotarDerecha" value="Next Step" />
+        </fieldset>
 
-                        <div class="col-md-3 col-12">
-                            <label for="validationCustom02" class="form-label">Prefix</label>
+        <!-- ACCOUNT INFORMATION -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">Account Information</h2> 
+
+                <div class="row">
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom01" class="form-label">Username</label>
+                                {{ form.username }}
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div> 
+                    </div>
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom01" class="form-label">E-mail</label>
+                                {{ form.email }}
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom02" class="form-label">Prefix</label>
                             {{form.prefix}}
                             <div class="invalid-feedback">
                             Please select a valid state.
                             </div>
-                        </div>
-
-                        <div class="col-md-9 col-12">
-                            <label for="validationCustom02" class="form-label">Phone</label>
+                    </div>
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom02" class="form-label">Phone</label>
                             {{ form.phone }}
                             <div class="invalid-feedback">
                             Please select a valid state.
                             </div>
-                        </div>
-                    
                     </div>
+                </div>
 
-                    <div class="row mt-5 mb-5">
-
-                        <div class="col-md-6 col-12">
-                            <label for="validationCustom02" class="form-label">Password</label>
+                <div class="row">
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom02" class="form-label">Password</label>
                             {{ form.password1 }}
                             <div class="invalid-feedback">
                             Please select a valid state.
                             </div>
-                        </div>
-
-                        <div class="col-md-6 col-12">
-                            <label for="validationCustom02" class="form-label">Repeat password</label>
+                    </div>
+                    <div class="col-xl-6 col-12">
+                        <label for="validationCustom02" class="form-label">Repeat password</label>
                             {{ form.password2 }}
                             <div class="invalid-feedback">
                             Please select a valid state.
                             </div>
-                        </div>
                     </div>
-
-                
-                
                 </div>
 
-                <div class="tab-pane fade" id="userInformation" role="tabpanel" aria-labelledby="contact-tab">
+            </div> 
+            <input type="button" name="previous" class="previous action-button-previous flotarIzquierda" value="Previous" /> 
+            <input type="button" name="next" class="next action-button flotarDerecha" value="Next Step" />
+        </fieldset>
 
-                    <div class="row mt-3">
-                        <div class="col-xl-6 col-12">
+        <!-- USER INFORMATION -->
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title">User Information</h2>
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="bachelor-tab" data-bs-toggle="pill" data-bs-target="#bachelor" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Bachelor's degree</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="aupair-tab" data-bs-toggle="pill" data-bs-target="#aupair" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Au pair</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="master-tab" data-bs-toggle="pill" data-bs-target="#master" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Master student</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="practices-tab" data-bs-toggle="pill" data-bs-target="#practices" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Internship</button>
+                    </li>
+                </ul>
 
-                            <h5>Type of user</h5>
-                        </div>
-
-                        <div class="col-xl-6 col-12">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" type="button" id="1"
-                                                        data-toggle="collapse" data-target="#academic"
-                                                        aria-expanded="true" aria-controls="collapseExample"
-                                                        onclick="recogeID(this.id)">Bachelor degree</button>
-                                    
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" type="button" id="2"
-                                                        data-toggle="collapse" data-target="#aupair"
-                                                        aria-expanded="true" aria-controls="collapseExample"
-                                                        onclick="recogeID(this.id)">Au pair</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" type="button" id="3"
-                                                        data-toggle="collapse" data-target="#master"
-                                                        aria-expanded="true" aria-controls="collapseExample"
-                                                        onclick="recogeID(this.id)">Master student</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" type="button" id="4"
-                                                        data-toggle="collapse" data-target="#practices"
-                                                        aria-expanded="true" aria-controls="collapseExample"
-                                                        onclick="recogeID(this.id)">Internship</button>
-                                </li>
-                            </ul>
-
-                            
-                        </div>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="bachelor" role="tabpanel" aria-labelledby="bachelor-tab">
+                        Bachelor
                     </div>
-
-                    <div clsas="row mt-3">
-                        <div class="col-xl-6 col-12">
-                            <label for="validationCustom02" class="form-label">Hometown</label>
-                            {{ form.cityOrigin1 }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6 col-12" id="cityDestination1Div">
-                            <label for="validationCustom02" class="form-label">Destination city</label>
-                            {{ form.cityDestination1 }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
+                    <div class="tab-pane fade" id="aupair" role="tabpanel" aria-labelledby="aupair-tab">
+                        Au pair
                     </div>
-
-                    <div class="row mt-3">
-
-                        <label>
-                            <input type="checkbox" onchange="showHide(this.checked)">Click here if you still don´t know your destination
-                        </label>
-
+                    <div class="tab-pane fade" id="master" role="tabpanel" aria-labelledby="master-tab">
+                        Master
                     </div>
-
-                    <div class="row mt-3">
-                        <div class="col-xl-6 col-12" id="cityDestination2Div" style="display:none;">
-                            <label for="validationCustom02" class="form-label">Second option of destination city</label>
-                            {{ form.cityDestination2 }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6 col-12" id="cityDestination3Div" style="display:none;">
-
-                            <label for="validationCustom02" class="form-label">Third option of destination city</label>
-                            {{ form.cityDestination3 }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
+                    <div class="tab-pane fade" id="practices" role="tabpanel" aria-labelledby="practices-tab">
+                        Internship
                     </div>
-
-                    <div class="row mt-3">   
-                        <div class="col-xl-6 col-12" id="universityOriginDiv">
-                            <label for="validationCustom02" class="form-label">Hometown university</label>
-                            {{ form.universityOrigin }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6 col-12" id="universityDestinationDiv">
-                            <label for="validationCustom02" class="form-label">Destination university</label>
-                            {{ form.universityDestination }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-
-                        <div class="col-xl-6 col-12" id="courseDiv">
-                            <label for="validationCustom02" class="form-label">Year of the degree</label>
-                            {{ form.course }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6 col-12" id="studiesDiv">
-                            <label for="validationCustom02" class="form-label">Degree</label>
-                            {{ form.studies }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3 mb-5">
-                        <div class="col-12" id="companyDiv">
-                        <label for="validationCustom02" class="form-label">Company</label>
-                            {{ form.company }}
-                            <div class="invalid-feedback">
-                            Please select a valid state.
-                            </div>
-                        </div>
-                    </div>
-
-
-
                 </div>
                 
-
-                <div class="row">
-                    <div class="col-xl-6 col-12 mt-5 mb-5">
-                        <button type="button" id="prevBtn" class="btn btn-btn-outline-secondary" onclick="nextPrev(-1)">Return</button>
-                    </div>
-
-                    <div class="col-xl-6 col-12 mt-5 mb-5 ">
-                        <button type="button" id="nextBtn" class="btn btn-outline-primary botonNext" onclick="nextPrev(1), Prefix()">Next</button>
+            </div> 
+            <input type="button" name="previous" class="previous action-button-previous flotarIzquierda" value="Previous" /> 
+            <input type="submit" name="make_payment" class="next action-button flotarDerecha" value="Confirm" />
+        </fieldset>
+        <fieldset>
+            <div class="form-card">
+                <h2 class="fs-title text-center">Success !</h2> <br><br>
+                <div class="row justify-content-center">
+                    <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
+                </div> <br><br>
+                <div class="row justify-content-center">
+                    <div class="col-7 text-center">
+                        <h5>You Have Successfully Signed Up</h5>
                     </div>
                 </div>
             </div>
-        </form>
+        </fieldset>
+    </form>
 
-
+        
 
     </div>
 </main>
