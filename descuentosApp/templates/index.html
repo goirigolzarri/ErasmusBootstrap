@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <title>Erasmus Planet</title>
@@ -17,21 +17,20 @@
 
     <!-- FUENTE POPPINS -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- JQUERY -->
-     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- SCRIPT REGISTRO -->
     <script src="{%static 'js/register.js'%}"></script>
     
-
     <link rel="icon" type="image/png" href="{%static 'images/EPCircular.ico'%}" with="32" height="32">
 
 </head>
 
-  <body>
+<body>
 <!--
     <div class="preloader js-preloader">
         <img src="{% static 'images/EPCircular.gif'%}" alt="..." class="logoEPGif">
@@ -44,87 +43,87 @@
 
         <!-- HEADER DE BOOTSTRAP -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
-        <div class="container">
-        <a class="navbar-brand" href="{% url 'base' %}">
-            <img src="{%static 'images/menu/logoMenuVacio.png' %}" alt="logo" class="img-fluid" width="40">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExample07">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <li class="nav-item separacionMenu">            
-                    <a href="{% url 'api' %}" target="_blank" class="nav-link" aria-current="page">
-                        Accommodations
-                    </a>
-                </li>
-
-                <li class="nav-item separacionMenu"> 
-                    <a href="{% url 'Descuentos' %}" class="nav-link">
-                        Discount
-                    </a>
-                </li>
-
-                <li class="nav-item separacionMenu">
-                    <a href="{% url 'Tienda' %}" class="nav-link">
-                        {% blocktrans %} Shop {% endblocktrans %}                                  
-                    </a>
-                </li>
-
-                <li class="nav-item separacionMenu">
-                    <a href="{% url 'Contacto' %}" class="nav-link">      
-                        Contact
-                    </a>
-                </li>
-
-            </ul>
-            
-            
-            {% if user.is_authenticated %}
-
-            
-            <form class="inputMenu">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </form>
-            <div class="text-end">          
-                <a type="button" class="btn btn-dark btnMenu btnAccesos" href="{% url 'UserProfile' %}">
-                    My profile
-                </a>
-
-                {% if user.is_superuser %}
-
-                <a type="button" class="btn btn-dark btnMenu btnAccesos" href="{% url 'Admin' %}">
-                    Admin
-                </a>
-            </div>
-
-            {% endif %}
-            
-            <a type="button" class="btn btn-dark btnAccesos" href="{% url 'logout' %}">
-                Log out
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+            <div class="container">
+            <a class="navbar-brand" href="{% url 'base' %}">
+                <img src="{%static 'images/menu/logoMenuVacio.png' %}" alt="logo" class="img-fluid" width="40">
             </a>
-            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            
-            {% else %}
+            <div class="collapse navbar-collapse" id="navbarsExample07">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-            <div class="text-end">          
-                <a type="button" class="btn btn-link btnMenu btnAccesos" href="{% url 'login' %}">
-                Log in
+                    <li class="nav-item separacionMenu">            
+                        <a href="{% url 'api' %}" target="_blank" class="nav-link" aria-current="page">
+                            Accommodations
+                        </a>
+                    </li>
+
+                    <li class="nav-item separacionMenu"> 
+                        <a href="{% url 'Descuentos' %}" class="nav-link">
+                            Discount
+                        </a>
+                    </li>
+
+                    <li class="nav-item separacionMenu">
+                        <a href="{% url 'Tienda' %}" class="nav-link">
+                            {% blocktrans %} Shop {% endblocktrans %}                                  
+                        </a>
+                    </li>
+
+                    <li class="nav-item separacionMenu">
+                        <a href="{% url 'Contacto' %}" class="nav-link">      
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+                
+                
+                {% if user.is_authenticated %}
+
+                
+                <form class="inputMenu">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                </form>
+                <div class="text-end">          
+                    <a type="button" class="btn btn-dark btnMenu btnAccesos" href="{% url 'UserProfile' %}">
+                        My profile
+                    </a>
+
+                    {% if user.is_superuser %}
+
+                    <a type="button" class="btn btn-dark btnMenu btnAccesos" href="{% url 'Admin' %}">
+                        Admin
+                    </a>
+                </div>
+
+                {% endif %}
+                
+                <a type="button" class="btn btn-dark btnAccesos" href="{% url 'logout' %}">
+                    Log out
                 </a>
-            
-                <a type="button" class="btn btn-link btnAccesos" href="{% url 'UserRegistrationView' %}">
-                Sign in
-                </a>
+                
+
+                
+                {% else %}
+
+                <div class="text-end">          
+                    <a type="button" class="btn btn-link btnMenu btnAccesos" href="{% url 'login' %}">
+                    Log in
+                    </a>
+                
+                    <a type="button" class="btn btn-link btnAccesos" href="{% url 'UserRegistrationView' %}">
+                    Sign in
+                    </a>
+                </div>
+
+                {% endif %}
             </div>
-
-            {% endif %}
-        </div>
-        </div>
-    </nav>
+            </div>
+        </nav>
 
         <!---->
     
@@ -249,13 +248,7 @@
             return cookieValue;
         }
         var csrftoken = getToken('csrftoken');
-
-
-
-
-
-
-        
+ 
         function getCookie(name) {
             // Split cookie string and get all individual name=value pairs in an array
             var cookieArr = document.cookie.split(";");
@@ -292,7 +285,7 @@
             });
     </script>
 
-    <script>
+<script>
     $(document).ready(function(){
 
 	$('.ir-arriba').click(function(){
@@ -308,7 +301,6 @@
 			$('.ir-arriba').slideUp(300);
 		}
 	});
-
 });
 </script>
 
