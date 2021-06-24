@@ -57,8 +57,8 @@ def updateItem(request):
 	action = data['action']
 	color = data['color']
 	talla = data['talla']
-	bandera = data['bandera']
-	fecha = data['fecha']
+	# bandera = data['bandera']
+	# fecha = data['fecha']
 	print('Action:', action)
 	print('Product:', productId)
 
@@ -69,7 +69,7 @@ def updateItem(request):
 	customer, created = Customer.objects.get_or_create(user=logged_in_user)
 	order, created = Order.objects.get_or_create(pedido_de=customer, complete = False)
 
-	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product, color=color, talla=talla, bandera=bandera, fecha=fecha)
+	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product, color=color, talla=talla)
 
 
 

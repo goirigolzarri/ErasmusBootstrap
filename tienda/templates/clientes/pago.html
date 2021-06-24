@@ -94,7 +94,7 @@
                         </div>
                 </div>
                 
-                <div class="card-body">
+                <!-- <div class="card-body">
                     <form action="#">
                         <div class="row">
                             <div class="col-xl-9 col-12">
@@ -106,15 +106,18 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> -->
 
                 <div class="card-body">
                    
-                            <h4>Total</h4>
+                         <h4>Total</h4>
                         
                         <div class="flotarDerecha">
                             <span>{{order.get_cart_total}} €</span>
                         </div>
+                        <!-- <div class="res-box sm-left">
+                            <button id="make-payment" class="btn btn-primary" type="submit">Confirm &amp; Pay</a>
+                        </div> -->
                 </div>
 
                 
@@ -305,22 +308,22 @@ FIN CARRITO -->
 </script>
 
 <script type="text/javascript">
-    var total = parseFloat("{{order.get_cart_total}}")
+    // var total = parseFloat("{{order.get_cart_total}}")
     
-    var form = document.getElementById('form');
-    form.addEventListener('submit', function(e){
+    // var form = document.getElementById('form');
+    // form.addEventListener('submit', function(e){
 
-        e.preventDefault()
-            //     console.log('Form submitted...')
-            //     document.getElementById('form-button').classList.add("hidden")
-            //     document.getElementById('payment-info').classList.remove("hidden")
-            //      https://youtu.be/woORrr3QNh8 minut 48:30
-    })
-    document.getElementById('make-payment').addEventListener('click', function(e){
+    //     e.preventDefault()
+    //             console.log('Form submitted...')
+    //             document.getElementById('form-button').classList.add("hidden")
+    //             document.getElementById('payment-info').classList.remove("hidden")
+    //         https://youtu.be/woORrr3QNh8 minut 48:30
+    // })
+    // document.getElementById('make-payment').addEventListener('click', function(e){
 
-        submitFormData()
+    //     submitFormData()
 
-    })
+    // })
     function submitFormData(){
 
         console.log('Payment button clicked')

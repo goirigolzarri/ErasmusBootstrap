@@ -95,22 +95,7 @@
 <!-- -->
 
 
-<script>
 
-var img = document.getElementById("imagen");
-
-var azul = document.getElementById("azul");
-var negro = document.getElementById("negro");
-
-azul.onclick = function(){
-    img.src="{%static 'images/tienda/ARG18_19BLUE.png'%}";
-}
-
-negro.onclick = function(){
-    img.src="{%static 'images/tienda/ARG18_19BLACK.png'%}";
-}
-
-</script>
 
 <!-- FIN TIENDA -->
 
@@ -118,4 +103,7 @@ negro.onclick = function(){
 <span class="scrolltotop"><i class="ion-arrow-up-c"></i></span>
 <!-- Scroll to top ends-->
 
+<script type="text/javascript" src="{% static 'js/cart.js'%}"></script>
+
 {% endblock %}
+

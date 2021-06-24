@@ -8,8 +8,8 @@ for (i = 0; i < updateBtns.length; i++) {
         var productId = this.dataset.product
         var talla;
         var color;
-        var bandera;
-        var fecha;
+        // var bandera;
+        // var fecha;
 
         if(document.getElementById('talla' + productId)){
             talla = document.getElementById('talla' + productId).value
@@ -19,13 +19,13 @@ for (i = 0; i < updateBtns.length; i++) {
         if(document.getElementById('color' + productId)){
             color = document.getElementById('color' + productId).value
         }
-        if(document.getElementById('bandera' + productId)){
-            bandera = document.getElementById('bandera' + productId).value
-        }
+        // if(document.getElementById('bandera' + productId)){
+        //     bandera = document.getElementById('bandera' + productId).value
+        // }
 
-        if(document.getElementById('fecha' + productId)){
-            fecha = document.getElementById('fecha' + productId).value
-        }
+        // if(document.getElementById('fecha' + productId)){
+        //     fecha = document.getElementById('fecha' + productId).value
+        // }
         
         
 
@@ -36,8 +36,8 @@ for (i = 0; i < updateBtns.length; i++) {
         //Salvavidas
         var tallapr = this.dataset.talla
         var colorpr = this.dataset.color
-        var banderapr = this.dataset.bandera
-        var fechapr = this.dataset.fecha
+        // var banderapr = this.dataset.bandera
+        // var fechapr = this.dataset.fecha
 
         if(talla == undefined){
             talla = tallapr
@@ -48,19 +48,19 @@ for (i = 0; i < updateBtns.length; i++) {
 
         }
 
-        if(bandera == undefined){
-            bandera = banderapr
+        // if(bandera == undefined){
+        //     bandera = banderapr
 
-        }
-        if(fecha == undefined){
-            fecha = fechapr
+        // }
+        // if(fecha == undefined){
+        //     fecha = fechapr
 
-        }
+        // }
         //
 
 
 
-        console.log('productId:', productId, 'Action:', action, 'Color:', color, 'Talla:', talla, 'Bandera:', bandera, 'Fecha:', fecha)
+        console.log('productId:', productId, 'Action:', action, 'Color:', color, 'Talla:', talla)
         console.log('USER:', user)
 
         
@@ -72,7 +72,7 @@ for (i = 0; i < updateBtns.length; i++) {
          
         }else{
 
-            updateUserOrder(productId, action, color, talla, bandera, fecha)
+            updateUserOrder(productId, action, color, talla)
         }
 
     })
@@ -121,7 +121,7 @@ for (i = 0; i < updateBtns.length; i++) {
 
 
 
-function updateUserOrder(productId, action, color, talla, bandera, fecha){
+function updateUserOrder(productId, action, color, talla){
     console.log('User is authenticated, sending data...')
 
     var url = '/shop/update_item/'
@@ -136,7 +136,7 @@ function updateUserOrder(productId, action, color, talla, bandera, fecha){
             'Content-Type': 'application/json',
             'X-CSRFToken': csrftoken,
         },
-        body:JSON.stringify({'productId': productId, 'action': action, 'color': color, 'talla': talla, 'bandera': bandera, 'fecha': fecha})
+        body:JSON.stringify({'productId': productId, 'action': action, 'color': color, 'talla': talla})
     })
     .then((response) =>{
         return response.json()

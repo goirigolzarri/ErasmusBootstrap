@@ -1,6 +1,8 @@
-const { nodeName } = require("jquery");
+
 
 function recogeID(clickID){ 
+
+    console.log(clickID)
 
     document.getElementById("id_studentType").value = clickID;
    

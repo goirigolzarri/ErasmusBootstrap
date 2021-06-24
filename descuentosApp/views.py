@@ -47,6 +47,8 @@ def base(request):
 	return render(request, 'base.html', {'guides': guides, 'query': query, 'guiasTarjetas': guiasTarjetas})
 
 
+
+
 def CityList(request):
 
 	city_list = City.objects.all()
@@ -177,24 +179,82 @@ def index(request):
 
 def api(request):
 
+
+	data = request.POST.getlist('city')
+	print(data)
+	citys = City.objects.all()
 	response = requests.get('http://cdn.housinganywhere.com/feeds/happyerasmusbilbao/happyerasmusbilbao.json')
 	api = response.json()
-	count = api['count']
-	print(count)
+	
+	url = api['firstPage']
+	response = requests.get(url)
+	api = response.json()
 	data = api['listings']
+
+
+	context = {'data':data}
+
+
+	# paginator = Paginator(data, 25)
+	# page_number = request.GET.get('page')
+	# page_obj = paginator.get_page(page_number)
+	# context = {'page_obj': page_obj, 'citys': citys}
+	
+
+
+	return render(request , 'api.html', context)
+
+
+
+def Uniplaces(request):
+	city = request.POST.getlist('city')
+	print(str(city))
+
+	string = ' '.join([str(item) for item in city])
+	print(string)
+	headers_dict = {'x-api-key':'XSbb5cQ5KmaUXiJc6975BadCW3WGu1nwaQIL8tLA'}
+
+
+
+	response_citys = requests.get('https://api.staging-uniplaces.com/v1/cities', headers=headers_dict)
+	api_citys = response_citys.json()
+	context = {'api_citys':api_citys}
+
+	if city:
+		response = requests.get('https://api.staging-uniplaces.com/v1/cities/' + string + '/offers', headers=headers_dict)
+		api = response.json()
+		data = api['data']
+		count = len(data)
+		print(count)
+		context = {'data':data, 'api_citys':api_citys}
+
+
+	
+
+	return render(request , context)
+
+
+def apiTickets(request):
+
+	headers = {'Content-Type':'application/json', 'Authorization':'Token KqfEOcJJWSsYmbafLkrLEBR9D7ErzGBO'}
+	params = {'lang': 'es'}
+	response = requests.get('https://api.tiqets.com/v2/products',params=params ,headers=headers)
+	api = response.json()
+	
+	data = api['products']
+
+	
 	#total = len(data)
 	#print(total)
 	#context = {'data':data, 'count':count}
 
 
-	paginator = Paginator(data, 25)
-	page_number = request.GET.get('page')
-	page_obj = paginator.get_page(page_number)
+	# paginator = Paginator(data, 25)
+	# page_number = request.GET.get('page')
+	# page_obj = paginator.get_page(page_number)
 
-	
+	return render(request , 'apiTickets.html', {'data': data})
 
-
-	return render(request , 'api.html', {'page_obj': page_obj})
 
 	
 def autosuggest(request):

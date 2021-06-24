@@ -5,16 +5,17 @@
 {%load static%}
 
 
-
 <main>
 <!-- BLOQUE BUSQUEDA CIUDAD BOOTSTRAP -->
-
+  <video autoplay loop muted id="miVideo">
+    <source src="static/video/city_video.mp4" type="video/mp4">   
+  </video>
 
 
   <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content">
     <div class="col-md-5 mx-auto my-5">
       <h1 class="display-4 fw-normal mb-4">Erasmus Planet</h1>
-      <p class="lead fw-normal unaLinea mb-4">You can’t imagine, what is waiting for you around your city.</p>
+      <p class="position-relative">You can’t imagine, what is waiting for you around your city</p>
         <form class="row g-3">
             <div class="col-xl-9 col-sm-12">
                 <input type="text" name="search" id="search" class="form-control" placeholder="What city or university are you looking for?">
@@ -25,6 +26,8 @@
         </form>
     </div>
   </div>
+
+
   <!---->
 
   {% if not query %}
@@ -137,4 +140,19 @@
 
 </script>
 <!--Page Wrapper ends-->
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/607a1330f7ce1827093b3a02/1f3edlu41';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
+
 {% endblock %}

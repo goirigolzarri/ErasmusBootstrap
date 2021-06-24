@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to consume RESTful APIs with Django</title>
+  </head>
+  <body>
+    <div class="mydiv" id="mydiv" name='mydiv'>
+      <!-- <button data-api={{nextPage}} class=" form-control update-api"> Next</button> -->
+      <form method="POST">
+        {% csrf_token %}
+        <select class="form-control" id="city" name="city">
+
+          {% for city in api_citys %}
+
+          <option value="{{city.code}}"> {{city.code}}</option>
+
+
+          {% endfor %}
+
+        </select>
+        <button type="submit"> Enviar</button>
+      </form>
+
+      <h2>Api Apartamentos</h2>
+
+      <ul>
+        {% for apartamento in data %}
+        <h5>Empieza apartamento</h5>
+        <li> Id: {{apartamento.id}} </li>
+        <li> Title: {{apartamento.attributes.accommodation_offer.title}} </li>
+        <li> Price: {{apartamento.attributes.accommodation_offer.price.amount}} </li>
+        {% for imag in apartamento.attributes.photos %}
+        <img src="{{imag.hash}}">
+        {% endfor %}
+        <!-- <li> Rank: {{apartamento.rank}} </li>
+        <li> Publisehd: {{apartamento.published}} </li>
+        <li> KindLabel:{{list.kindLabel}} </li>
+        <li> TypeLabel:{{list.typeLabel}} </li>
+        <li> Rentype{{list.rentType}} </li>
+        <li> Title:{{list.title}} </li>
+        <li> <a href="{{list.originalLink}}">Link</a>  </li> -->
+        <!-- <li> {{list.originalLink}} </li>
+          <Span>Sublinks</Span>
+          {% for link in localizedLinks %}
+          <li> {{link}} </li>
+          {% endfor %} -->
+          <!-- <Span>Acaban Sublinks</Span> -->
+        
+        <h5>Acaba apartamento</h5>
+        <br>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+  <script type="text/javascript" src="{% static 'js/api.js'%}"></script>
+  <script type="text/javascript">
+
+    var user = '{{request.user}}'
+
+    function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getToken('csrftoken');
+  </script>
+</html>

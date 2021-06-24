@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{%load static%}
+
+
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to consume RESTful APIs with Django</title>
+  </head>
+  <body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+ 
+
+    <h2>Api Tickets ocio</h2>
+
+   
+      {% for tick in data %}
+      <strong>Empieza tickets</strong>
+      <ul>
+      
+        <li> Id: {{tick.id}} </li>
+        <li> title: {{tick.title}} </li>
+        <li> City: {{tick.city_name}} </li>
+        <li> Country: {{tick.country_name}} </li>
+        <li> Price: {{tick.price}} </li>
+        <a href="{{tick.product_url}}">Link </a>
+        <br>
+        {% for imag in tick.images %}
+        <img src="{{imag.small}}">
+        {% endfor %}
+        
+      </ul>
+      <strong>Acaba tickets</strong>
+      {% endfor %}
+    
+ 
+  </body>
+
+</html>
+
+{% endblock %}

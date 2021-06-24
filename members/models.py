@@ -24,7 +24,7 @@ class User(AbstractUser):
     COURSE_CHOICES = (('Primero', '1'), ('Segundo', '2'), ('Tercero', '3'), ('Cuarto', '4'), ('Quinto', '5'), ('Sexto', '6'))
     course = models.CharField(max_length=7, choices=COURSE_CHOICES, blank=True, null=True)
 
-    country =  models.ForeignKey(Country, on_delete=models.CASCADE)
+    country =  models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
     phone = models.IntegerField(null=True, )
     prefix = models.IntegerField(null=True )
     STUDENT_CHOICES = (('1', 'Bachelor'), ('2', 'Au Pair'), ('3', 'Master'), ('4', 'Internship'))

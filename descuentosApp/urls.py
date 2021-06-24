@@ -23,6 +23,7 @@ urlpatterns = [
 	path('privacyPolicy/', views.PrivacyPolicy, name='PrivacyPolicy'),
 	path('faq/', views.Faq, name='Faq'),
 	path('api/', views.api, name='api'),
+	path('api_tickets/', views.apiTickets, name='apiTickets'),
     path('autosuggest/', autosuggest, name='autosuggest')
 
 

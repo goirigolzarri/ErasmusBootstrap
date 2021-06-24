@@ -34,11 +34,6 @@ class Bandera(models.Model):
 
 
 
-
-
-
-
-	
 class Product(models.Model):
 	foto = models.ImageField(null=True, blank=True, upload_to="images/", default='images/default.png')
 	foto2 = models.ImageField(null=True, blank=True, upload_to="images/", default='images/default2.png')
@@ -51,7 +46,6 @@ class Product(models.Model):
 	categoria = models.ForeignKey(CategoriaProducto, on_delete=models.SET_NULL, null = True)
 	colores = models.ManyToManyField('ColorProducto', related_name='products')
 	tallas = models.ManyToManyField('Tallas', related_name='products')
-	bandera = models.ManyToManyField('Bandera', related_name='products')
 	
 	
 	
@@ -130,20 +124,12 @@ class Order(models.Model):
 
 
 
-
-
-
-
-
 class OrderItem(models.Model):
 	product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
 	quantity = models.IntegerField(default=0, null=True, blank=True)
 	date_added = models.DateTimeField(auto_now_add=True)
-	
 	talla = models.CharField(null= True, blank=True,  max_length=20)
-	bandera = models.CharField(null=True, max_length=30)
-	fecha = models.CharField(null= True, blank=True,  max_length=20)
 	color = models.CharField(null= True, blank=True,  max_length=20)
 
 	@property

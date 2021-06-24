@@ -10,6 +10,7 @@ from django.urls import reverse
 class Country(models.Model):
 
 	name = models.CharField(max_length=30)
+	prefix = models.IntegerField(default=34, null=False, blank=False)
 
 	class Meta:
         
@@ -20,9 +21,6 @@ class Country(models.Model):
 	def __str__(self):
 
 		return self.name
-
-
-
 
 
 class City(models.Model):
