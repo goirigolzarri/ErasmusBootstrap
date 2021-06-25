@@ -14,8 +14,8 @@
 
   <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center content">
     <div class="col-md-5 mx-auto my-5">
-      <h1 class="display-4 fw-normal mb-4">Erasmus Planet</h1>
-      <p class="position-relative">You can’t imagine, what is waiting for you around your city</p>
+      <h1 class="display-4 fw-normal mb-4 fuenteVideo">Erasmus Planet</h1>
+      <p class="position-relative fuenteVideo">You can’t imagine, what is waiting for you around your city</p>
         <form class="row g-3">
             <div class="col-xl-9 col-sm-12">
                 <input type="text" name="search" id="search" class="form-control" placeholder="What city or university are you looking for?">
@@ -32,7 +32,7 @@
 
   {% if not query %}
     
-    <div class="container pb-5">
+    <div class="container pb-5 mt-5">
     <h1 class="text-center mb-5">Cities</h1>
 
       <!-- BLOQUE DE CARROUSEL DE TARJETAS DE GUIA ALEATORIAS -->
@@ -80,7 +80,7 @@
 <!-- SI NO ENCUENTRA LA CIUDAD QUE INTRODUCIMOS EN EL FORMULARIO -->
 
 {% if not guides %}
-<div class="container pb-5">
+<div class="container pb-5 mt-5">
 <p class="lead textoCentrado">We don't have your guide yet</p>
 <p class="lead textoCentrado">Write your guide and <a href="{% url 'Propuestaguia' %}">upload to Erasmus Planet</a></p>
 </div>
@@ -92,7 +92,7 @@
 {% for guide in guides %}
 
 
-<div class="container pb-5">
+<div class="container pb-5 mt-5">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       {% for guide in guides %}

@@ -13,40 +13,61 @@
     <title>Accommodations</title>
   </head>
   <body>
-    <div class="mydiv" id="mydiv" name='mydiv'>
+
+  <main>
+      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+        <div class="col-md-5 mx-auto my-5">
+          <h6 class="display-6 fw-normal">Accommodations</h6>   
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+      </div>
+
+      <div class="mydiv container" id="mydiv" name='mydiv'>
       <!-- <button data-api={{nextPage}} class=" form-control update-api"> Next</button> -->
-      <form method="POST">
+      <form method="POST" clas="mb-5">
         {% csrf_token %}
+        <div class="row">
+        <div class="col-xl-9 col-12">
         <select class="form-control" id="city" name="city">
 
           {% for city in api_citys %}
 
           <option value="{{city.code}}"> {{city.code}}</option>
-
-
           {% endfor %}
 
         </select>
-        <button type="submit"> Enviar</button>
+        </div>
+        <div class="col-xl-3 col-12">
+        <button class="btn btn-primary" type="submit"> Enviar</button>
+        </div>
+        </div>
       </form>
-      <br>
-      <br>
-      <h2>Api Apartamentos</h2>
-      <br>
+    
+      <h2 class="mt-5">Apartamentos</h2>
+      
       <ul>
-        {% for apartamento in data %}
-        <h5>Empieza apartamento</h5>
-        <li> Id: {{apartamento.id}} </li>
-        <li> Title: {{apartamento.title}} </li>
-        <li> Link: <a href="{{apartamento.originalLink}}"> Webs</a> </li>
-        <li> Location: {{apartamento.location.city}} - {{apartamento.location.country}} </li>
-        
-        <h5>Acaba apartamento</h5>
-        <br>
 
-        {% endfor %}
+        <div class="row mb-5">
+          {% for apartamento in data %}
+            <div class="card" style="width: 20rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{apartamento.title}} </h5>
+                <p class="mute">{{apartamento.id}}</p>
+                <nav aria-label="Page navigation example">
+                <ul class="list-group list-group-flush pagination">
+                        <li class="list-group-item">Location: {{apartamento.location.city}} - {{apartamento.location.country}}</li>
+                      </ul>
+                <a class="btn btn-primary" href="{{apartamento.originalLink}}">View</a>
+                </nav>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </ul>
     </div>
+    </main>
+    
   </body>
 
   <!-- <script type="text/javascript">
