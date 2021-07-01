@@ -597,6 +597,10 @@ select.form-control {
     font-weight: bold;
 }
 
+.fuenteTitulo {
+    font-weight: bold !important;
+}
+
 
 /*** FORMULARIO REGISTRO ***/
 
