@@ -1,3 +1,4 @@
+from typing import ContextManager, final
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic.edit import DeleteView
@@ -13,7 +14,9 @@ from tienda.models import *
 from django.http import JsonResponse
 import requests
 import json
-from django.core.paginator import Paginator
+from django.core.paginator import Page, Paginator
+from .utils import merge_two_dicts
+import time
 # Create your views here.
 
 
@@ -180,26 +183,81 @@ def index(request):
 def api(request):
 
 
-	data = request.POST.getlist('city')
-	print(data)
-	citys = City.objects.all()
-	response = requests.get('http://cdn.housinganywhere.com/feeds/happyerasmusbilbao/happyerasmusbilbao.json')
-	api = response.json()
+	# data = request.POST.getlist('city')
+	# print(data)
+	alojamientos_cached = ('alojamientos' in request.session)
+	if alojamientos_cached: print('Ciudades en cache!')
+	if not alojamientos_cached:
+
+		response = requests.get('http://cdn.housinganywhere.com/feeds/happyerasmusbilbao/happyerasmusbilbao.json')
 	
-	url = api['firstPage']
-	response = requests.get(url)
-	api = response.json()
-	data = api['listings']
+		api = response.json()
+		data = api['listings']
+		request.session['alojamientos'] = data
 
 
-	context = {'data':data}
-
-
-	# paginator = Paginator(data, 25)
-	# page_number = request.GET.get('page')
-	# page_obj = paginator.get_page(page_number)
-	# context = {'page_obj': page_obj, 'citys': citys}
 	
+	alojamientos = request.session['alojamientos']
+
+
+	ciudades_cached = ('ciudades'  in request.session)
+	if ciudades_cached:
+		print('tiene ciudades!')
+		
+	else:
+		try:
+			ciudades = []
+			# data = api['listings']
+			for alojamiento in alojamientos:
+
+				ciudades.append(alojamiento['location']['city'])
+				print('Ciudades:', alojamiento['location']['city'])
+				
+
+			ciudades = list(set(ciudades)) 
+			ciudades = sorted(ciudades)
+			print(len(ciudades))
+			print('Lista de ciudades:',ciudades)
+			request.session['ciudades'] = ciudades
+		
+
+
+		except Exception as e:
+			print(e)
+
+
+
+
+	ciudades = request.session['ciudades']
+	ciudades = list(set(ciudades)) 
+	ciudades = sorted(ciudades)
+
+
+
+	city = request.POST.getlist('city')
+	print(str(city))
+
+	string = ' '.join([str(item) for item in city])
+	print(string)
+
+	if city:
+		alojamientos_busqueda = [] 
+		for alojamiento in alojamientos:
+			if alojamiento['location']['city'] == string:
+				alojamientos_busqueda.append(alojamiento)
+			
+
+	if alojamientos_busqueda == None:
+		paginator = Paginator(alojamientos, 25)
+		page_number = request.GET.get('page')
+		page_obj = paginator.get_page(page_number)
+		context = {'page_obj': page_obj, 'ciudades': ciudades}
+	else:
+
+		paginator = Paginator(alojamientos_busqueda, 25)
+		page_number = request.GET.get('page')
+		page_obj = paginator.get_page(page_number)
+		context = {'page_obj': page_obj, 'ciudades': ciudades}
 
 
 	return render(request , 'api.html', context)
@@ -236,24 +294,88 @@ def Uniplaces(request):
 
 def apiTickets(request):
 
+	
 	headers = {'Content-Type':'application/json', 'Authorization':'Token KqfEOcJJWSsYmbafLkrLEBR9D7ErzGBO'}
 	params = {'lang': 'es'}
 	response = requests.get('https://api.tiqets.com/v2/products',params=params ,headers=headers)
 	api = response.json()
 	
-	data = api['products']
+	tiqets = api['products']
+
+
+
+	#Descargar cities 
+	cities_cached = ('cities' in request.session)
+	if cities_cached: print('Ciudades en cache!')
+	if not cities_cached:
+		cities_dict = []
+		page = 1
+		headers = {'Content-Type':'application/json', 'Authorization':'Token KqfEOcJJWSsYmbafLkrLEBR9D7ErzGBO'}
+		params = {'lang': 'en', 'page': page}
+		response = requests.get('https://api.tiqets.com/v2/cities',params=params ,headers=headers)
+		pages_data = response.json()
+		pages = pages_data['pagination']['total']
+		print(pages)
+		time.sleep(1)
+		for page_num in range(1,141):
+			print('Pagina:', page_num)
+
+			params = {'lang': 'es', 'page': page_num}
+			response = requests.get('https://api.tiqets.com/v2/cities',params=params ,headers=headers)
+			respuesta = response.json()
+			cities = respuesta['cities']
+			
+			
+
+			for city in cities:
+				cities_dict.append(city)
 
 	
-	#total = len(data)
-	#print(total)
-	#context = {'data':data, 'count':count}
+		request.session['cities'] = cities_dict
+
+	
+
+	cities = request.session['cities']
+	cities = sorted(cities, key=lambda k: k['name'])
+	context = {'tiqets': tiqets, 'cities': cities}
+
+	city = request.POST.getlist('city')
+	print(str(city))
+
+	string = ' '.join([str(item) for item in city])
+	print(string)
+
+	if city:
+		tiqets = []
+		headers = {'Content-Type':'application/json', 'Authorization':'Token KqfEOcJJWSsYmbafLkrLEBR9D7ErzGBO'}
+		params = {'lang': 'es','city_id': string }
+		response = requests.get('https://api.tiqets.com/v2/products',params=params ,headers=headers)
+		search_data = response.json()
+		data = search_data['products']
+		total = search_data['pagination']['total']
+		for dat in data:
+
+			tiqets.append(dat)
+		
+		for page_num in range(1, total//10):
+			headers = {'Content-Type':'application/json', 'Authorization':'Token KqfEOcJJWSsYmbafLkrLEBR9D7ErzGBO'}
+			params = {'lang': 'es','city_id': string }
+			response = requests.get('https://api.tiqets.com/v2/products',params=params ,headers=headers)
+			response_data = response.json()
+			data = response_data['products']
+			for dat in data:
+
+				tiqets.append(dat)
+			
 
 
-	# paginator = Paginator(data, 25)
-	# page_number = request.GET.get('page')
-	# page_obj = paginator.get_page(page_number)
 
-	return render(request , 'apiTickets.html', {'data': data})
+
+
+		context = {'tiqets': tiqets, 'cities': cities}
+
+
+	return render(request , 'apiTickets.html', context)
 
 
 	

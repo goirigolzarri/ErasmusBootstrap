@@ -11,7 +11,7 @@
 <main>
   <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="background-color: #F2F2F2;">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
-      <img src="{%static 'images/titles/shop.png '%}" style="width: 400px;">
+        <img src="{% static 'images/titles/shop.png' %}" style="width: 400px;">
       
       <a class="btn btn-outline-secondary" href="{% url 'Carrito' %}">  Shopping cart  ({{cartItems}})</a>
          
@@ -45,9 +45,10 @@
             <!-- Tags -->
             <div class="widget mt-4">
                 <h3 class="widget-title">Category</h3>
+                
                 {% for cat in categorias%}
                 <ul class="list-tags listaNoPadding">
-                    <li class="listaFooter"><a href="#" class="btn v6 dark">{{cat.name}}</a></li>
+                    <li class="listaFooter"><a href="{% url 'ProductCategoria' cat.id %}" class="btn v6 dark">{{cat.name}}</a></li>
                 </ul>
                 {% endfor %}
             </div>
@@ -62,7 +63,9 @@
                         <a class="d-block" href="{% url 'ProductDetail' product.pk %}"><img class="d-block imgTienda" src="{{product.fotoURL}}" alt="Computers &amp; Accessories"></a>
                         <div class="card-body pb-2">
                             <h5><a href="{% url 'ProductDetail' product.pk %}" class="noEnlace">{{product.name}}</a></h5>
-                            <span class="font-weight-semibold">{{product.precio}}€</span>
+                            {% if product.descuento != Null %} <span style="color:rgb(228, 13, 13);text-decoration:line-through;">{{product.precio}}€ </span> <span class="font-weight-semibold"> {{product.precioFinal}}€</span> 
+                            {% else %}  <span class="font-weight-semibold"> {{product.precioFinal}}€</span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

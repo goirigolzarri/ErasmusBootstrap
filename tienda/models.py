@@ -33,6 +33,13 @@ class Bandera(models.Model):
 		return self.name
 
 
+class Descuento(models.Model):
+	codigo = models.CharField(max_length=5)
+	porciento = models.IntegerField(blank=True, null=True)
+
+	def __str__(self):
+		return str(self.porciento) + ' %'
+
 
 class Product(models.Model):
 	foto = models.ImageField(null=True, blank=True, upload_to="images/", default='images/default.png')
@@ -46,6 +53,9 @@ class Product(models.Model):
 	categoria = models.ForeignKey(CategoriaProducto, on_delete=models.SET_NULL, null = True)
 	colores = models.ManyToManyField('ColorProducto', related_name='products')
 	tallas = models.ManyToManyField('Tallas', related_name='products')
+	descuento = models.ForeignKey(Descuento, on_delete=models.SET_NULL, null=True, blank=True)
+	stock = models.IntegerField(null=False, blank=False, default=0)
+	
 	
 	
 	
@@ -55,6 +65,21 @@ class Product(models.Model):
 	def __str__(self):
 		return self.name
 
+
+
+	@property
+	def stock_virtual(self):
+		pedido = self.orderitem_set.filter(order__complete=False)
+		total =  sum([item.quantity for item in pedido])
+		return total
+
+	@property
+	def precioFinal(self):
+		if self.descuento != None:
+			precio = self.precio - (self.precio * (self.descuento.porciento/100))
+		else:
+			precio = self.precio
+		return precio
 
 	@property
 	def fotoURL(self):
@@ -93,15 +118,24 @@ class Product(models.Model):
 class Customer(models.Model):
 	name = models.CharField(max_length=200, null=True, blank=True)
 	email = models.CharField(max_length=200, null=True, blank=True)
-	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
+	def save(self, *args, **kwargs):
+		self.name = self.user.username 
+		self.email = self.user.email 
+	
+		# self.preciounidad = self.product.preciounidad
+		# self.preciounidadiva = self.product.preciounidadiva
+		
+		super(Customer, self).save(*args, **kwargs)
 
 	def __str__(self):
 
-		return str(self.id)
+		return str(self.name)
 
 class Order(models.Model):
     
-	pedido_de = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+	pedido_de = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
 	date = models.DateTimeField(auto_now_add=True)
 	complete = models.BooleanField(default=False, null=True, blank=False)
 	transaction_id = models.CharField(max_length=200, null=True)
@@ -122,11 +156,16 @@ class Order(models.Model):
 		total = sum([item.quantity for item in orderitems])
 		return total
 
+	@property
+	def items(self):
+
+		items = self.orderitem_set.all()
+		return items
 
 
 class OrderItem(models.Model):
-	product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
-	order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+	product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
+	order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
 	quantity = models.IntegerField(default=0, null=True, blank=True)
 	date_added = models.DateTimeField(auto_now_add=True)
 	talla = models.CharField(null= True, blank=True,  max_length=20)
@@ -134,6 +173,11 @@ class OrderItem(models.Model):
 
 	@property
 	def get_total(self):
+		total = self.product.precioFinal * self.quantity
+		return total
+
+	@property
+	def get_total_normal(self):
 		total = self.product.precio * self.quantity
 		return total
 
@@ -150,5 +194,6 @@ class ShippingAddress(models.Model):
 
 	def __str__(self):
 		return self.address
+
 
 

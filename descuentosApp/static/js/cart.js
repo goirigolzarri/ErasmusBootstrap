@@ -19,17 +19,7 @@ for (i = 0; i < updateBtns.length; i++) {
         if(document.getElementById('color' + productId)){
             color = document.getElementById('color' + productId).value
         }
-        // if(document.getElementById('bandera' + productId)){
-        //     bandera = document.getElementById('bandera' + productId).value
-        // }
-
-        // if(document.getElementById('fecha' + productId)){
-        //     fecha = document.getElementById('fecha' + productId).value
-        // }
-        
-        
-
-        
+   
         var action = this.dataset.action
 
         
@@ -48,27 +38,14 @@ for (i = 0; i < updateBtns.length; i++) {
 
         }
 
-        // if(bandera == undefined){
-        //     bandera = banderapr
-
-        // }
-        // if(fecha == undefined){
-        //     fecha = fechapr
-
-        // }
-        //
-
-
-
         console.log('productId:', productId, 'Action:', action, 'Color:', color, 'Talla:', talla)
         console.log('USER:', user)
 
-        
 
         if(user == 'AnonymousUser'){
 
             console.log('Sin registrar')
-            window.location.href = "/members/login/"
+            // window.location.href = "/login/"
          
         }else{
 
@@ -78,43 +55,6 @@ for (i = 0; i < updateBtns.length; i++) {
     })
 
 }
-
-
-// function addCookieItem(productId, action){
-
-//     console.log('not logged in....')
-
-//     if (action == 'add'){
-
-//         if (cart[productId]==undefined){
-//             cart[productId] = {'quantity': 1}
-//         }else{
-
-//             cart[productId]['quantity'] += 1
-//             console.log('sumando')
-//         }
-//     }
-
-
-//     if (action == 'remove'){
-
-//         if (cart[productId]!=undefined){
-
-//             cart[productId]['quantity'] -= 1  
-//             console.log('restando')
-
-//             if(cart[productId]['quantity'] <= 0){
-
-//                 console.log('Remove Item')
-//                 delete cart[productId]
-
-//             }
-//         }
-//     }
-//     console.log('Cart:', cart)
-//     document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
-//     location.reload()
-// }
 
 
 

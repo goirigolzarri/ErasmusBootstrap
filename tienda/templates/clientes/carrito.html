@@ -18,7 +18,17 @@
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
   </div>
 
-<div class="container padding-bottom-3x mb-1">
+
+    {% if messages %}
+    <div class="alert alert-danger" role="alert">
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
 <!-- Shopping Cart-->
     <div class="table-responsive shopping-cart">
         <table class="table table-hover">
@@ -60,9 +70,12 @@
                         </button>
                     </p>
                     </td>
-                    <td class="text-center text-lg text-medium">{{item.get_total}} €</td>
-                    <td class="text-center text-lg text-medium">$18.00</td>
-                    <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item">
+                    <td class="text-center text-lg text-medium">{% if item.product.descuento != Null %} <span style="color:rgb(228, 13, 13);text-decoration:line-through;">{{item.get_total_normal}} €  </span>  <span class="font-weight-semibold"> &nbsp {{item.get_total}} €</span> 
+                        {% else %}  <span class="font-weight-semibold"> {{item.get_total}}€</span>{% endif %}</td>
+
+                    <td class="text-center text-lg text-medium">{% if item.product.descuento != Null %} <span style="color:rgb(228, 13, 13);">{{ item.product.descuento.porciento}} % </span> {% endif %}</td>
+    
+                    <td class="text-center"><a class="remove-from-cart update-cart" data-product={{item.product.id}} data-talla={{item.talla}} data-color={{item.color}} data-action="delete"  data-toggle="tooltip" title="" data-original-title="Remove item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>

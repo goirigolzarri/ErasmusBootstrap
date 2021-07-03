@@ -1,5 +1,6 @@
-﻿{%load static%}
-{% load i18n %}
+﻿{% load i18n %}
+{%load static%}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +20,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-   
-
     <!-- CSS COOKIES -->
 
     <link rel="stylesheet" type="text/css" href="{%static 'css/stylesCookies.css'%}">
@@ -37,7 +36,13 @@
 </head>
 
 <body>
-
+<!--
+    <div class="preloader js-preloader">
+        <img src="{% static 'images/EPCircular.gif'%}" alt="..." class="logoEPGif">
+    </div>
+    -->
+    <!--Preloader ends-->
+    <!--Page Wrapper starts-->
     <div class="page-wrapper fixed-footer">
         <!--header starts-->
 
@@ -63,13 +68,13 @@
 
                     <li class="nav-item separacionMenu"> 
                         <a href="{% url 'apiTickets' %}" class="nav-link">
-                            Discount
+                           {% trans "Discount" %} 
                         </a>
                     </li>
 
                     <li class="nav-item separacionMenu">
                         <a href="{% url 'Tienda' %}" class="nav-link">
-                            {% blocktrans %} Shop {% endblocktrans %}                                  
+                            {% blocktrans %}Shop{% endblocktrans %}                                  
                         </a>
                     </li>
 
@@ -95,9 +100,9 @@
 
                     {% if user.is_superuser %}
 
-                    <a type="button" class="btn btn-dark btnMenu btnAccesos" href="{% url 'Admin' %}">
+                    <!--<a type="button" class="btn btn-dark btnMenu btnAccesos" href="{% url 'Admin' %}">
                         Admin
-                    </a>
+                    </a>-->
                 </div>
 
                 {% endif %}
@@ -125,10 +130,10 @@
             </div>
         </nav>
 
-        <!---->
-    
+        <!--
+    <h1>{% trans 'Translate' %}</h1>
     {% block content %}
-    {% endblock %}
+    {% endblock %}-->
              
     </div>
 

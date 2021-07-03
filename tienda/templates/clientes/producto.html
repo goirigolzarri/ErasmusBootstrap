@@ -74,14 +74,17 @@
                 
             </div>
 
-            <div class="mt-5 mb-5"> <strong>Price : </strong> <span class="amount-old">$544</span>  <span class="pro-price"> $300.00</span></div>
+            <div class="mt-5 mb-5"> <strong>Price : </strong>  {% if product.descuento != Null %} <span style="color:rgb(228, 13, 13);text-decoration:line-through;">{{product.precio}}€ </span> <span class="font-weight-semibold"> {{product.precioFinal}}€</span> 
+                {% else %}  <span class="font-weight-semibold"> {{product.precioFinal}}€</span> <br>
+                {% endif %}
+                <br>
               
-            <form class="row g-3">
-                
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-3 dd-btn update-cart" data-product={{product.id}} data-action="add">Add to cart</button>
-                </div>
-            </form>
+                <form class="row g-3">
+                    
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3 dd-btn update-cart" data-product={{product.id}} data-action="add">Add to cart</button>
+                    </div>
+                </form>
 
             </div>
         </div>

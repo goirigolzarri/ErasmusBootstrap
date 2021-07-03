@@ -6,6 +6,7 @@ from django.http import JsonResponse
 import json
 import datetime
 from .utils import cartData, cookieCart, guestOrder
+from django.contrib import messages
 
 # Create your views here.
 def Carrito(request):
@@ -22,6 +23,9 @@ def Carrito(request):
 def Tienda(request):
 
 	productos = Product.objects.all()
+	for producto in productos:
+		print('Stock virtual ' + producto.name + ':', producto.stock_virtual)
+
 	categorias = CategoriaProducto.objects.all()
 
 	data = cartData(request)
@@ -57,8 +61,7 @@ def updateItem(request):
 	action = data['action']
 	color = data['color']
 	talla = data['talla']
-	# bandera = data['bandera']
-	# fecha = data['fecha']
+	
 	print('Action:', action)
 	print('Product:', productId)
 
@@ -74,15 +77,17 @@ def updateItem(request):
 
 
 	if action == 'add':
-		orderItem.quantity = (orderItem.quantity + 1)
+		if orderItem.product.stock > orderItem.product.stock_virtual:
+			orderItem.quantity = (orderItem.quantity + 1)
+		else:
+			messages.warning(request, 'No stock remaining for ' + orderItem.product.name)
 	elif action == 'remove':
 		orderItem.quantity = (orderItem.quantity -1)
 			
-	
 	orderItem.save()
 
 	if action == 'delete':
-		print('borrar')
+		print('Borrar producto')
 		orderItem.delete()
 	
 
@@ -120,6 +125,11 @@ def processOrder(request):
 	if total == float(order.get_cart_total):
 		print('LLega hasta el order')
 		order.complete = True
+		for item in order.items:
+
+			item.product.stock -= item.quantity
+			item.product.save()
+
 	order.save()
 
 
@@ -137,5 +147,20 @@ def processOrder(request):
 
 	print('Data:', request.body)
 	return JsonResponse('Payment submitted..', safe=False)
+
+
+
+def ProductCategoria(request, pk):
+
+	data = cartData(request)
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
+
+	categoria = CategoriaProducto.objects.get(id = pk)
+	productos = Product.objects.filter(categoria=categoria)
+	context = {'categoria': categoria, 'productos':productos,'items': items, 'order': order, 'cartItems': cartItems}
+
+	return render(request, 'clientes/tienda_categoria.html', context)
 
 

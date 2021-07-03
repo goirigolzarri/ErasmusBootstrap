@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 from pathlib import Path
 
@@ -115,13 +116,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
+
+
+LANGUAGES = (
+    ('en', _('English')),
+ ('es', _('Spanish')),
+)
+
 LANGUAGE_CODE = 'es'
-
-# LANGUAGES = [
-#     ('en', 'English'),
-#     ('es', 'Spanish'),
-# ]
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -132,9 +134,9 @@ USE_TZ = True
 
 
 
-# LOCALE_PATHS = [
-#     os.path.join(BASE_DIR, 'locale')
-# ]
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
