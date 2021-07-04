@@ -131,9 +131,9 @@
         </nav>
 
         <!--
-    <h1>{% trans 'Translate' %}</h1>
+    <h1>{% trans 'Translate' %}</h1>-->
     {% block content %}
-    {% endblock %}-->
+    {% endblock %}
              
     </div>
 
@@ -233,13 +233,14 @@
 
 <!-- AVISO COOKIES -->
 
-<div class="aviso-cookies" id="aviso-cookies">
+    <div class="aviso-cookies" id="aviso-cookies">
 		<img class="galleta" src="{%static 'images/cookie/cookie.svg' %}" alt="Galleta">
 		<h3 class="titulo">Cookies</h3>
 		<p class="parrafo">Utilizamos cookies propias y de terceros para mejorar nuestros servicios.</p>
 		<button class="boton" id="btn-aceptar-cookies">De acuerdo</button>
 		<a class="enlace" href="aviso-cookies.html">Aviso de Cookies</a>
 	</div>
+    
 	<div class="fondo-aviso-cookies" id="fondo-aviso-cookies"></div>
 <!-- -->
     
@@ -248,7 +249,7 @@
 
     <script type="text/javascript">
 
-        var user = '{{request.user}}'
+        var user = '{{request.user}}';
 
         function getToken(name) {
             var cookieValue = null;
@@ -268,11 +269,6 @@
         var csrftoken = getToken('csrftoken');
 
 
-
-
-
-
-        
         function getCookie(name) {
             // Split cookie string and get all individual name=value pairs in an array
             var cookieArr = document.cookie.split(";");
