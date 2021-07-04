@@ -25,12 +25,15 @@
 								<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
 								<div class="mt-3">
 									<h4>John Doe</h4>
+									<!--
 									<p class="text-secondary mb-1">Full Stack Developer</p>
 									<p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
 									<button class="btn btn-primary">Follow</button>
 									<button class="btn btn-outline-primary">Message</button>
+									-->
 								</div>
 							</div>
+							<!--
 							<hr class="my-4">
 							<ul class="list-group list-group-flush">
 							
@@ -47,6 +50,7 @@
 									<span class="text-secondary">bootdey</span>
 								</li>
 							</ul>
+							-->
 						</div>
 					</div>
 				</div>
@@ -118,30 +122,173 @@
 							</div>
                             <hr>
                             <div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Type of student</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">
-									<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
-                                        </li>
-                                    </ul>
-
-                                    <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
-                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
-                                    </div>
+								<div class="form-card">
+									<h2 class="fs-title">User Information</h2>
+									<label for="" class="label">
+										<h5>Type of student</h5>
+									</label>
+									<div class="mar-bot-20">
+										{{form.studentType}}
+									</div>
+									</label>
+									
+										<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+											<li class="nav-item" role="presentation">
+												<button class="nav-link active" id="1" data-bs-toggle="pill"
+													data-bs-target="#bachelor" type="button" role="tab" aria-controls="pills-home"
+													aria-selected="true" onclick="recogeID(this.id)">Bachelor's degree</button>
+											</li>
+											<li class="nav-item" role="presentation">
+												<button class="nav-link" id="2" data-bs-toggle="pill" data-bs-target="#aupair"
+													type="button" role="tab" aria-controls="pills-profile" aria-selected="false"
+													onclick="recogeID(this.id)">Au pair</button>
+											</li>
+											<li class="nav-item" role="presentation">
+												<button class="nav-link" id="3" data-bs-toggle="pill" data-bs-target="#master"
+													type="button" role="tab" aria-controls="pills-contact" aria-selected="false"
+													onclick="recogeID(this.id)">Master student</button>
+											</li>
+											<li class="nav-item" role="presentation">
+												<button class="nav-link" id="4" data-bs-toggle="pill"
+													data-bs-target="#practices" type="button" role="tab" aria-controls="pills-contact"
+													aria-selected="false" onclick="recogeID(this.id)">Internship</button>
+											</li>
+										</ul>
+									
+									<div class="row mb-3">
+										<div class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Hometown</label>
+												{{ form.cityOrigin1 }}
+											<span class="form-text text-muted">Where are you studying?</address></span>
+										</div>
+				
+										<div id="cityDestination1Div" class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Destination city</label>
+												{{ form.cityDestination1 }}                          
+											<span class="form-text text-muted">Where are you doing your exchange?
+												</address></span>
+				
+										</div>
+				
+									</div>
+				
+				
+				
+									<label><input type="checkbox" onchange="showHide(this.checked)">Click here if you
+										still don´t know your destination</label><br>
+									<div class="row mar-top-25">
+				
+										<div id="cityDestination2Div" style="display:none;" class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Second option of destination city</label>
+											
+												
+												{{ form.cityDestination2 }}
+											
+											<span class="form-text text-muted">Fill it if not sure about your
+												destination yet</address></span>
+				
+										</div>
+				
+										<div id="cityDestination3Div" style="display:none;" class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Third option of destination city</label>
+											
+												
+												{{ form.cityDestination3 }}
+											
+											<span class="form-text text-muted">Fill it if not sure about your
+												destination yet</span>
+				
+										</div>
+				
+									</div>
+				
+									<div class="row mb-3">
+				
+										<div id="universityOriginDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Hometown university</label>
+											
+												
+												{{ form.universityOrigin }}
+											
+											<span class="form-text text-muted">In which university are you
+												studying?</span>
+				
+										</div>
+				
+										<div id="universityDestinationDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Destination university</label>
+											
+												
+												{{ form.universityDestination }}
+											
+											<span class="form-text text-muted">In the exchange, in which university are
+												you going to study?</span>
+				
+										</div>
+				
+				
+				
+									</div>
+				
+									<div class="row mb-3">
+				
+										<div id="courseDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Year of the degree</label>
+											<div class="row">
+												<div class="col-3">
+													<span class="input-group-text">
+														Nº
+													</span>
+												</div>
+												<div class="col-9">
+													{{ form.course }}
+												</div>
+											</div>
+											<span class="form-text text-muted">Please, select the year of your
+												degree</span>
+				
+										</div>
+				
+										<div id="studiesDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Degree</label>
+											
+												
+												{{ form.studies }}
+											
+											<span class="form-text text-muted">Please, enter your degree</span>
+				
+										</div>
+				
+									</div>
+				
+									<div class="row mb-3">
+				
+										<div id="companyDiv" class="col-xl-6 col-sm-6 margenBotonNext">
+											<label for="" class="form-label">Degree</label>
+											
+												
+												{{ form.company }}
+											
+											<span class="form-text text-muted">Please, enter your company</span>
+				
+										</div>
+									</div>
+				
+									<!-- <div class="tab-content" id="pills-tabContent">
+									<div class="tab-pane fade show active" id="bachelor" role="tabpanel" aria-labelledby="bachelor-tab">
+										Bachelor
+									</div>
+									<div class="tab-pane fade" id="aupair" role="tabpanel" aria-labelledby="aupair-tab">
+										Au pair
+									</div>
+									<div class="tab-pane fade" id="master" role="tabpanel" aria-labelledby="master-tab">
+										Master
+									</div>
+									<div class="tab-pane fade" id="practices" role="tabpanel" aria-labelledby="practices-tab">
+										Internship
+									</div>
+								</div> -->
+				
 								</div>
                                 
 							</div>
@@ -160,6 +307,10 @@
 
 
   </main>
+
+<!-- Register js -->
+<script src="{% static 'js/hiding_atributes.js' %}"></script>
+
 
 
 
